@@ -1,3 +1,12 @@
 [submodule "bundle/vim-tex-syntax"]
 	path = bundle/vim-tex-syntax
 	url = git@github.com:gerw/vim-tex-syntax.git
+[submodule "bundle/Align"]
+	path = bundle/Align
+	url = git://github.com/vim-scripts/Align.git
+[submodule "bundle/EnhCommentify"]
+	path = bundle/EnhCommentify
+	url = git://github.com/vim-scripts/EnhCommentify.vim.git
+[submodule "bundle/matchit"]
+	path = bundle/matchit
+	url = git://github.com/vim-scripts/matchit.zip.git

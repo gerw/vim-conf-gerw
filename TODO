@@ -1,0 +1,9 @@
+latex-suite installieren => nach vim-conf-base
++ patchen
+
+Was ist mit diesen Dateien?
+ftplugin/matlab.vim
+indent/matlab.vim
+syntax/matlab.vim
+
+spell/ -> eigenes git repo?

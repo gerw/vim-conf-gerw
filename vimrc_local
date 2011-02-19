@@ -1,1 +1,196 @@
-" Sample vimrc
+mapclear
+
+" first the disabled features due to security concerns
+set modelines=0         " no modelines, see http://www.guninski.com/vim1.html
+"let g:secure_modelines_verbose=1 " securemodelines vimscript
+
+
+set autoindent          " always set autoindenting on
+set autoread                    " watch for file changes by other programs
+set backspace=indent,eol,start
+set backup
+set backupext=.bak
+set hlsearch
+set hidden                      " allow editing multiple unsaved buffers
+set ignorecase
+set incsearch                  " show matches as soon as possible
+set noautowrite                 " don't automatically write on :next, etc
+set nocompatible                " vim defaults, not vi!
+set nrformats-=octal            " Don't consider numbers starting with 0 as octal when incrementing/decrementing via c-a, c-x
+set ruler
+set scrolloff=5                 " keep at least 5 lines above/below cursor
+set sidescrolloff=5             " keep at least 5 columns left/right of cursor
+set shiftwidth=2
+set showbreak=>\ 
+set showcmd             " Show (partial) command in status line.
+set smartcase
+set tabstop=2
+set undolevels=1000             " number of forgivable mistakes
+
+"autocomplete like the bash
+"chance completemode to get a more natural feeling
+"see http://vim.wikia.com/wiki/Make_Vim_completion_popup_menu_work_just_like_in_an_IDE
+set wildmode=longest,list 
+set completeopt=longest,menuone
+
+" Ohne Menus
+set guioptions=aeiM
+" Keine Dialoge
+set guioptions+=c
+
+" Statusline:
+set statusline=%<%f\ %h%y%m%r%=%-14.(%l,%c%V%)\ %P
+set laststatus=2
+
+syn on
+colorscheme PapayaWhip
+highlight FoldColumn guibg=Moccasin guifg=Red gui=bold
+hi DiffChange guibg=LightBlue ctermbg=DarkCyan ctermfg=White
+hi DiffText gui=NONE guibg=LightRed ctermbg=DarkCyan ctermfg=Yellow
+
+
+filetype plugin on
+
+
+"""""""""""""""""""""""""""
+"""" Latex-Suite Stuff.
+"""""""""""""""""""""""""""
+" IMPORTANT: grep will sometimes skip displaying the file name if you
+" search in a singe file. This will confuse Latex-Suite. Set your grep
+" program to always generate a file-name.
+set grepprg=grep\ -nH\ $*
+
+" OPTIONAL: This enables automatic indentation as you type.
+filetype indent on
+
+" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
+" 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
+" The following changes the default filetype back to 'tex':
+let g:tex_flavor='latex'
+
+
+" No spell-checking in tex comments (see syntax/tex.vim)
+let g:tex_comment_nospell = 1
+
+
+"" Mit <C-C> Einrückungen löschen. (mit <C-T> hinzufügen).
+inoremap <C-C> <C-D>
+
+" <C-J> auf <C-D> ummappen (Jump zum <++>)
+" In  Normal, insert
+imap <C-D> <Plug>IMAP_JumpForward
+nmap <C-D> <Plug>IMAP_JumpForward
+vmap <C-D> <Plug>IMAP_JumpForward
+
+
+
+"tabulator um durch den buffer zu wechseln
+nnoremap <silent> <C-Tab> :bnext<CR>
+nnoremap <silent> <S-C-Tab> :bprevious<CR>
+
+
+" Disable auto-comment in C,cpp with the // comments.
+au FileType c,cpp setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,f://
+" was: comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
+
+
+""" Enhanced Commentify:
+" Nice indentation:
+let EnhCommentifyRespectIndent = 'yes'
+let EnhCommentifyPretty = 'yes'
+let EnhCommentifyUseBlockIndent = 'yes'
+" Use large comment blocks
+let EnhCommentifyMultiPartBlocks = 'yes'
+" Own Bindings
+let EnhCommentifyUserBindings = 'yes'
+" Für Markierungen und sowas wie 3<C-C> im Normalmodus:
+nmap <silent> <c-c> :MyEnhancedCommentify<CR>
+vmap <silent> <c-c> :MyEnhancedCommentify<CR>
+command! -range MyEnhancedCommentify call EnhancedCommentify('yes', 'first', <line1>, <line2>)
+
+" show tabs:?
+set list
+set listchars=tab:\|\ 
+
+
+"" Header gates einfügen:
+function! s:insert_gates()
+  let gatename = substitute(toupper(expand("%:t")), "\\.", "_", "g")
+  execute "normal! i#ifndef " . gatename
+  execute "normal! o#define " . gatename
+  execute "normal! Go#endif /* " . gatename . " */"
+  normal! kk
+endfunction
+
+autocmd BufNewFile *.{h,hpp} call <SID>insert_gates()
+
+" Alt-P in insert-mode: insert register 0
+imap <a-p> <c-r>0
+
+"SVN-diff??
+map <silent> <F10> :call Show_svn_diff()<cr>gg
+function Show_svn_diff()
+	let filename=expand("%")
+	new
+	exe "read !svn diff ".filename
+	set syntax=diff buftype=nofile
+	setlocal nomodifiable
+	setlocal bufhidden=delete
+	nmap <silent><buffer> <c-c> :bdel<cr>
+endfunction
+
+map <silent> <S-F10> :call Show_full_svn_diff()<cr>gg
+function Show_full_svn_diff()
+	let filename=expand("%")
+	diffthis
+	rightb vnew
+	exe "0read !svn cat ".filename
+	normal jdd
+	set syntax=tex buftype=nofile
+	setlocal nomodifiable
+	setlocal bufhidden=delete
+	diffthis
+	autocmd BufDelete <buffer> diffoff!
+	nmap <silent><buffer> <c-c> :bdel<cr>
+	" autocmd BufDelete <buffer> windo "call MakeTexFolds(1)"
+endfunction
+
+
+
+
+
+"""""""""""""""""""""""
+" Spellchecker
+"""""""""""""""""""""""
+
+let spellst=["de", "en"]
+
+function Sel_lang()
+        let g:langcnt = (g:langcnt+1) % len (g:spellst)
+        let lang = g:spellst[g:langcnt]
+        echo "spelllang = " . lang
+        exe "set spelllang=".lang
+endfunction 
+
+let langcnt=0
+set spelllang="en"
+
+" F2 - Spellcheck an/aus
+map <silent> <F2> :set spell!<CR>:echo "Spell check: " . strpart("offon", 3 * &spell, 3)<cr>
+" F3 - Sprache Ã¤ndern
+map <silent> <F3> :call Sel_lang() <CR>
+
+
+" Speichern mit <c-s>
+map <c-s> :w<cr>
+imap <c-s> <c-o>:w<cr>
+
+
+" Move to the last known cursor position and unfold it.
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+au BufReadPost * normal! zv
+
+
+" Space in normal-mode => toggle folding (if there is a fold)
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':'l')<CR>
+nnoremap <silent> <S-Space> @=(foldlevel('.')?'zc':'l')<CR>
