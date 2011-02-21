@@ -8,6 +8,7 @@ LATEX-SUITE
 ================
 latex-suite installieren => nach vim-conf-base
 + patchen
++ auxoutline nicht vergessen
 
 indent/tex.vim
 => sollte mit den Patches von der latex-suite eingespielt werden.
