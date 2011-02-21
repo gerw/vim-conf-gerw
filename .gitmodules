@@ -6,7 +6,10 @@
 	url = git://github.com/vim-scripts/Align.git
 [submodule "bundle/EnhCommentify"]
 	path = bundle/EnhCommentify
-	url = git://github.com/vim-scripts/EnhCommentify.vim.git
+	url = git@github.com:gerw/EnhCommentify.vim.git
 [submodule "bundle/matchit"]
 	path = bundle/matchit
 	url = git://github.com/vim-scripts/matchit.zip.git
+[submodule "bundle/vim-HiLinkTrace"]
+	path = bundle/vim-HiLinkTrace
+	url = git@github.com:gerw/vim-HiLinkTrace.git

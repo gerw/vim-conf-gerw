@@ -1,9 +1,13 @@
+================
+GIT-WORK
+================
+spell/ -> eigenes git repo?
+
+================
+LATEX-SUITE
+================
 latex-suite installieren => nach vim-conf-base
 + patchen
 
-Was ist mit diesen Dateien?
-ftplugin/matlab.vim
-indent/matlab.vim
-syntax/matlab.vim
-
-spell/ -> eigenes git repo?
+indent/tex.vim
+=> sollte mit den Patches von der latex-suite eingespielt werden.
