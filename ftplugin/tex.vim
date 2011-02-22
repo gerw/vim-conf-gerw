@@ -178,19 +178,25 @@ set path+=~/work/Resources/Bibliography
 set path+=~/work/Resources/LaTeX/ 
 
 
-" Environments:
-let g:Tex_Env_block = "\\begin{block}{<++>}\<CR><++>\<CR>\\end{block}"
-let g:Tex_Env_frame = "\\begin{frame}\<CR>\\frametitle{<++>}\<CR><++>\<CR>\\end{frame}"
+" Macros for Creating of Environments:
+let g:Tex_Env_block = "\\begin{block}{<++>}\<CR><++>\<CR>\\end{block}\<CR><++>"
+let g:Tex_Env_frame = "\\begin{frame}\<CR>\\frametitle{<++>}\<CR><++>\<CR>\\end{frame}\<CR><++>"
 
-let g:Tex_Env_labelprefix_assumption = "asm:"
-let g:Tex_Env_labelprefix_definition = "def:"
-let g:Tex_Env_labelprefix_lemma = "lem:"
-let g:Tex_Env_labelprefix_remark = "rem:"
-let g:Tex_Env_labelprefix_theorem = "thm:"
+let g:Tex_EnvLabelprefix_assumption = "asm:"
+let g:Tex_EnvLabelprefix_definition = "def:"
+let g:Tex_EnvLabelprefix_lemma = "lem:"
+let g:Tex_EnvLabelprefix_remark = "rem:"
+let g:Tex_EnvLabelprefix_theorem = "thm:"
+let g:Tex_EnvLabelprefix_corollary = "cor:"
 
-let g:Tex_Env_labelprefix_align = "eq:"
-let g:Tex_Env_labelprefix_equation = "eq:"
-let g:Tex_Env_labelprefix_subequations = "eq:"
+let g:Tex_EnvLabelprefix_align = "eq:"
+let g:Tex_EnvLabelprefix_equation = "eq:"
+let g:Tex_EnvLabelprefix_subequations = "eq:"
+
+" Created environments should end in <CR>+<++>
+let g:Tex_EnvEndWithCR = 1
+" Created labels before or after content?
+let g:Tex_LabelAfterContent = 0
 
 " No concealing in TeX
 let g:tex_conceal = ""

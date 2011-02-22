@@ -38,6 +38,9 @@ set guioptions=aeiM
 " Keine Dialoge
 set guioptions+=c
 
+" Prevent DrChip menu
+let g:DrChipTopLvlMenu = ""
+
 " Statusline:
 set statusline=%<%f\ %h%y%m%r%=%-14.(%l,%c%V%)\ %P
 set laststatus=2
