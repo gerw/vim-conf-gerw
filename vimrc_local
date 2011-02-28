@@ -197,3 +197,7 @@ au BufReadPost * normal! zv
 " Space in normal-mode => toggle folding (if there is a fold)
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':'l')<CR>
 nnoremap <silent> <S-Space> @=(foldlevel('.')?'zc':'l')<CR>
+
+
+" shift + insert -> paste in clip board
+inoremap <S-Insert> <C-R>*
