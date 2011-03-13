@@ -10,5 +10,19 @@ latex-suite installieren => nach vim-conf-base
 + patchen
 + auxoutline nicht vergessen
 
+===============
+MATLAB STUFF
+===============
+Was ist mit diesen Dateien?
+ftplugin/matlab.vim
+indent/matlab.vim
+syntax/matlab.vim
+
+
+===============
+Spell
+===============
+spell/ -> eigenes git repo?
+
 indent/tex.vim
 => sollte mit den Patches von der latex-suite eingespielt werden.
