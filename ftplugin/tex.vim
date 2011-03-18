@@ -178,6 +178,11 @@ if ( getcwd() =~ "Projects/Plasticity" )
 	set path+=~/work/Projects/Plasticity/Resources
 endif
 
+" Pfad für Talks setzen.
+if ( getcwd() =~ "work/Talks" )
+	set path+=~/work/Talks/Archive
+endif
+
 set path+=~/work/Resources/Bibliography
 set path+=~/work/Resources/LaTeX/ 
 
