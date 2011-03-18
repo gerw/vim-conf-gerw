@@ -13,3 +13,6 @@
 [submodule "bundle/vim-HiLinkTrace"]
 	path = bundle/vim-HiLinkTrace
 	url = git@github.com:gerw/vim-HiLinkTrace.git
+[submodule "bundle/vim-indent-object"]
+	path = bundle/vim-indent-object
+	url = git@github.com:michaeljsmith/vim-indent-object.git
