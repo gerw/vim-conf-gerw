@@ -47,6 +47,7 @@ set laststatus=2
 
 syn on
 colorscheme PapayaWhip
+" Customize Color scheme
 highlight FoldColumn guibg=Moccasin guifg=Red gui=bold
 hi DiffChange guibg=LightBlue ctermbg=DarkCyan ctermfg=White
 hi DiffText gui=NONE guibg=LightRed ctermbg=DarkCyan ctermfg=Yellow
@@ -130,7 +131,8 @@ autocmd BufNewFile *.{h,hpp} call <SID>insert_gates()
 " Alt-P in insert-mode: insert register 0
 imap <a-p> <c-r>0
 
-"SVN-diff??
+
+" SVN-diff??
 map <silent> <F10> :call Show_svn_diff()<cr>gg
 function Show_svn_diff()
 	let filename=expand("%")
@@ -180,8 +182,12 @@ set spelllang="en"
 
 " F2 - Spellcheck an/aus
 map <silent> <F2> :set spell!<CR>:echo "Spell check: " . strpart("offon", 3 * &spell, 3)<cr>
-" F3 - Sprache Ã¤ndern
+" F3 - Sprache Ändern
 map <silent> <F3> :call Sel_lang() <CR>
+
+"""""""""""""""""""""""
+" END Spellchecker
+"""""""""""""""""""""""
 
 
 " Speichern mit <c-s>
@@ -196,8 +202,14 @@ au BufReadPost * normal! zv
 
 " Space in normal-mode => toggle folding (if there is a fold)
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':'l')<CR>
+
+" Shift-Space in normal-mode => close fold (if there is a fold)
 nnoremap <silent> <S-Space> @=(foldlevel('.')?'zc':'l')<CR>
 
 
 " shift + insert -> paste in clip board
 inoremap <S-Insert> <C-R>*
+
+
+" Mapping für HiLinkTrace
+map <unique> <Leader>hlt <Plug>HiLinkTrace
