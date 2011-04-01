@@ -16,3 +16,6 @@
 [submodule "bundle/vim-indent-object"]
 	path = bundle/vim-indent-object
 	url = git@github.com:michaeljsmith/vim-indent-object.git
+[submodule "bundle/vim-latex-suite"]
+	path = bundle/vim-latex-suite
+	url = git@github.com:gerw/vim-latex-suite.git
