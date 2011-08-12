@@ -136,7 +136,7 @@ function! NumbersOnLetters()
 	inoremap N n
 	inoremap S s
 	inoremap <esc> <c-r>=LettersOnLetters()<cr><esc>
-	imap <c-d> <c-r>=LettersOnLetters()<cr><Plug>IMAP_JumpForward<f9>
+	imap <c-d> <c-r>=LettersOnLetters()<cr><Plug>IMAP_JumpForward<C-G>u<f9>
 	return ''
 endfunction
 
