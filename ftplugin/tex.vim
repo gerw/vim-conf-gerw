@@ -191,6 +191,7 @@ set path+=~/work/Resources/LaTeX/
 let g:Tex_Env_block = "\\begin{block}{<++>}\<CR><++>\<CR>\\end{block}\<CR><++>"
 let g:Tex_Env_frame = "\\begin{frame}\<CR>\\frametitle{<++>}\<CR><++>\<CR>\\end{frame}\<CR><++>"
 
+" Customization of labels of environments
 let g:Tex_EnvLabelprefix_assumption = "asm:"
 let g:Tex_EnvLabelprefix_definition = "def:"
 let g:Tex_EnvLabelprefix_lemma = "lem:"
@@ -206,6 +207,16 @@ let g:Tex_EnvLabelprefix_subequations = "eq:"
 let g:Tex_EnvEndWithCR = 1
 " Created labels before or after content?
 let g:Tex_LabelAfterContent = 0
+
+" Customized Section maps
+let g:Tex_SectionMaps = 0
+call IMAP("SPA", "\\part{<+name+>}\<CR>%%fakechapter: Intro\<CR>\\label{<+label+>}\<CR><++>", "tex")
+call IMAP("SCH", "\\chapter{<+name+>}\<CR>%%fakesection: Intro\<CR>\\label{<+label+>}\<CR><++>", "tex")
+call IMAP("SSE", "\\section{<+name+>}\<CR>%%fakesubsection: Intro\<CR>\\label{<+label+>}\<CR><++>", "tex")
+call IMAP("SSS", "\\subsection{<+name+>}\<CR>%%fakesubsubsection: Intro\<CR>\\label{<+label+>}\<CR><++>", "tex")
+call IMAP("SS2", "\\subsubsection{<+name+>}\<CR>%%fakeparagraph: Intro\<CR>\\label{<+label+>}\<CR><++>", "tex")
+call IMAP("SPG", "\\paragraph{<+name+>}\<CR><++>", "tex")
+call IMAP("SSP", "\\subparagraph{<+name+>}\<CR><++>", "tex")
 
 " No concealing in TeX
 let g:tex_conceal = ""
