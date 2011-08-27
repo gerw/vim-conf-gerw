@@ -195,6 +195,9 @@ map <c-s> :w<cr>
 imap <c-s> <c-o>:w<cr>
 
 
+" Redefine 'Y' such that it behaves like 'D' and 'C'
+map Y y$
+
 " Move to the last known cursor position and unfold it.
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 au BufReadPost * normal! zv
