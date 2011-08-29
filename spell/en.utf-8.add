@@ -160,3 +160,5 @@ multigrid
 preconditioner
 namespace
 namespaces
+discretizing
+PDEs
