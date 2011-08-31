@@ -162,3 +162,17 @@ namespace
 namespaces
 discretizing
 PDEs
+FEniCS
+DOLFIN
+PETSc
+uBLAS
+UFC
+UFL
+FFC
+DOLFIN's
+Logg
+MINRES
+GMRES
+workflow
+TetGen
+TriTetMesh
