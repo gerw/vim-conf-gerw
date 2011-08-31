@@ -31,8 +31,8 @@ let g:Tex_Menus = 0
 let g:Tex_FoldedEnvironments = ''
 " Do not fold \item
 let g:Tex_FoldedMisc = 'preamble,<<<'
-" Fold all sections, not needed, this is the default.
-" let g:Tex_FoldedSections = 'part,chapter,section,subsection,subsubsection,paragraph'
+" Fold all sections.
+let g:Tex_FoldedSections = 'part,chapter,section,subsection,subsubsection,paragraph,subparagraph'
 
 
 
