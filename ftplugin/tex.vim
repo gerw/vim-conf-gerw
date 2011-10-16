@@ -282,3 +282,14 @@ function! LatexEnvironmentTextObject(inner)
 
 endfunction
 
+
+
+" Some useful macros
+" -----------------------------------
+" \added[...]{text} -> text
+let @b='dt{ma%x`ax'
+" \deleted[...]{text} -> 
+let @e='dt{daB'
+" \replaced[...]{text1}{text2} -> text1
+let @s='dt{ma%xldaB`ax'
+
