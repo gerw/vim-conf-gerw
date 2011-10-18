@@ -293,3 +293,6 @@ let @e='dt{daB'
 " \replaced[...]{text1}{text2} -> text1
 let @s='dt{ma%xldaB`ax'
 
+
+" <S-ESC> in insert mode: insert a placeholder and leave insert mode
+imap <buffer><silent> <S-ESC> <++><ESC>
