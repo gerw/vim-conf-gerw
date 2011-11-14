@@ -24,7 +24,6 @@ Vexler
 discretizations
 inter\-pola\-tion
 subgradient
-the a-priori
 semismooth
 Stadler
 P1
@@ -198,3 +197,5 @@ Erlabrunn
 GAMM
 ESAIM
 semilinear
+adjointness
+axisymmetric
