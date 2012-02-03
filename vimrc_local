@@ -216,3 +216,14 @@ inoremap <S-Insert> <C-R>*
 
 " Mapping für HiLinkTrace
 map <unique> <Leader>hlt <Plug>HiLinkTrace
+
+
+
+
+"""""""""""""""
+" Mappings for the swap words plugin
+"""""""""""""""
+vmap <silent> gs <Plug>SwapWords
+nmap <silent> gs <Plug>SwapWords
+
+map <silent> gS <Plug>ResetSwapWords
