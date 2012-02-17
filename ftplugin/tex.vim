@@ -294,5 +294,11 @@ let @e='dt{daB'
 let @s='dt{ma%xldaB`ax'
 
 
+" Use other placeholders, that does not collide with LaTeXs beamer
+let g:Imap_PlaceHolderStart = '<<+'
+let g:Imap_PlaceHolderEnd = '+>>'
+
 " <S-ESC> in insert mode: insert a placeholder and leave insert mode
-imap <buffer><silent> <S-ESC> <++><ESC>
+imap <buffer><silent> <S-ESC> <<++>><ESC>
+
+

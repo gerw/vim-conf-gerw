@@ -227,3 +227,45 @@ vmap <silent> gs <Plug>SwapWords
 nmap <silent> gs <Plug>SwapWords
 
 map <silent> gS <Plug>ResetSwapWords
+
+
+"""""""""""""""
+" Implementation of g/
+" Search for the next motion.
+"""""""""""""""
+
+" Mapping: use the selection
+vmap <silent> g/ <esc>:call SearchMotion("visual")<CR>
+
+" Mapping: use a text object
+nmap <silent> g/ :set operatorfunc=SearchMotion<CR>g@
+
+function SearchMotion( mode )
+	if a:mode == "visual"
+		let startpos = getpos("'<")
+		let endpos = getpos("'>")
+	elseif a:mode == "char"
+		let startpos = getpos("'[")
+		let endpos = getpos("']")
+	else
+		exit
+	end
+
+	" Only work within one line
+	if startpos[1] == endpos[1]
+		let line = getline(startpos[1])
+		let wordStart = startpos[2]-1
+		let wordEnd = endpos[2]-1
+		let word = line[(wordStart):(wordEnd)]
+		" call search(word)
+		" call matchadd('search', word)
+		call histadd('search', word)
+		let @/=word
+		" if &hlsearch
+		" 	echomsg "bla"
+		" 	set hlsearch
+		" end
+		" normal n
+		" let b:searchedWord = word
+	end
+endfunction
