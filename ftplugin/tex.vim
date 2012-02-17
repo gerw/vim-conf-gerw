@@ -32,7 +32,7 @@ let g:Tex_FoldedEnvironments = ''
 " Do not fold \item
 let g:Tex_FoldedMisc = 'preamble,<<<'
 " Fold all sections.
-let g:Tex_FoldedSections = 'part,chapter,section,subsection,subsubsection,paragraph,subparagraph'
+let g:Tex_FoldedSections = 'part|addpart,chapter|addchap,section|addsec,subsection,subsubsection,paragraph,subparagraph'
 
 
 
