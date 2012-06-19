@@ -24,6 +24,7 @@ set shiftwidth=2
 set showbreak=>\ 
 set showcmd             " Show (partial) command in status line.
 set smartcase
+set nostartofline         " Do not go to first character of line when changing buffers.
 set tabstop=2
 set undolevels=1000             " number of forgivable mistakes
 
