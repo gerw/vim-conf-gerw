@@ -3,7 +3,43 @@ set cino=g0
 
 
 " Zum Header wechseln:
-map <F4> :e %:p:s,.h$,.X123X,:s,.cc$,.h,:s,.X123X$,.cc,<CR>
+" map <F4> :e %:p:s,.h$,.X123X,:s,.cc$,.h,:s,.X123X$,.cc,<CR>
+map <silent> <F4> :call Switch_header_impl()<CR>:redraw<CR>
+
+if !exists("*Switch_header_impl")
+	"" Prevent redefining this function
+	"" (if editing a new c-file, ftplugin/cpp.vim will be sourced again!)
+
+	function! Switch_header_impl()
+		let filename = expand('%')
+		let basename = expand('%:r')
+
+		if filename =~? '\.h\%(pp\)\?$'
+			" We are currently editing a header file
+			let extension = 'c'
+		elseif filename =~? '\.c\%(pp\)\?$'
+			" We are currently editing an implementation file
+			let extension = 'h'
+		else
+			return ''
+		end
+
+		" echoerr filename
+		" echoerr basename . '.' . extension
+
+		if filereadable( basename . '.' . extension )
+			let newfile = basename . '.' . extension 
+			" echoerr newfile
+			execute "normal :e " . newfile . "\<cr>"
+		elseif filereadable( basename . '.' . extension . 'pp' )
+			let newfile = basename . '.' . extension . 'pp'
+			" echoerr newfile
+			execute "normal :e " . newfile . "\<cr>"
+		end
+	endfunction
+endif
+
+
 
 map <silent> <F5> :call Make_cpp_env()<CR><home><Plug>IMAP_JumpForward
 imap <silent> <F5> <esc><f5>
