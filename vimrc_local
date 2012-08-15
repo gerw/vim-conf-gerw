@@ -28,6 +28,8 @@ set nostartofline         " Do not go to first character of line when changing b
 set tabstop=2
 set undolevels=1000             " number of forgivable mistakes
 
+set path=. " the default of path includes '/usr/include'. I do not want this.
+
 "autocomplete like the bash
 "chance completemode to get a more natural feeling
 "see http://vim.wikia.com/wiki/Make_Vim_completion_popup_menu_work_just_like_in_an_IDE

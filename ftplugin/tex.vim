@@ -165,26 +165,28 @@ endfunction
 
 " Pfad für Übungen setzen.
 if ( getcwd() =~ "WS2009_Chemnitz_Grundlagen_der_Optimierung/Übungen" )
-	set path+=~/work/Teaching/WS2009_Chemnitz_Grundlagen_der_Optimierung/Übungen/Aufgaben
+	set path+=$HOME/work/Teaching/WS2009_Chemnitz_Grundlagen_der_Optimierung/Übungen/Aufgaben
 endif
 
 " Pfad für Übungen setzen.
 if ( getcwd() =~ "work/Teaching/" )
-	set path+=~/work/Teaching/Exercises
+	set path+=$HOME/work/Teaching/Exercises
 endif
 
 " Pfad für Plasticity setzen.
 if ( getcwd() =~ "Projects/Plasticity" )
-	set path+=~/work/Projects/Plasticity/Resources
+	set path+=$HOME/work/Projects/Plasticity/Resources
 endif
 
 " Pfad für Talks setzen.
 if ( getcwd() =~ "work/Talks" )
-	set path+=~/work/Talks/Archive
+	set path+=$HOME/work/Talks/Archive
 endif
 
-set path+=~/work/Resources/Bibliography
-set path+=~/work/Resources/LaTeX/ 
+set path+=$HOME/work/Resources/Bibliography
+set path+=$HOME/work/Resources/LaTeX/ 
+
+let g:Tex_TEXINPUTS = $HOME . '/work/Resources/LaTeX/,' . $HOME . '/work/Talks/Archive/**/*'
 
 
 " Macros for Creating of Environments:
