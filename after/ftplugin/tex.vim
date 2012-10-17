@@ -22,3 +22,9 @@ call IMAP ('\left[]', '\left[ <++> \right]<++>', "tex")
 
 " remove binding to <m-i> = é
 iunmap <buffer> <m-i>
+
+
+"" Add graphicx to the detected packages (such that EFI uses \includegraphics)
+if g:Tex_package_detected !~ '\<graphicx\>'
+	let g:Tex_package_detected = g:Tex_package_detected.',graphicx'
+endif
