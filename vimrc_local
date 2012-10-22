@@ -55,6 +55,10 @@ highlight FoldColumn guibg=Moccasin guifg=Red gui=bold
 hi DiffChange guibg=LightBlue ctermbg=DarkCyan ctermfg=White
 hi DiffText gui=NONE guibg=LightRed ctermbg=DarkCyan ctermfg=Yellow
 
+if !has('gui_running')
+	hi Normal ctermbg=223
+end
+
 
 filetype plugin on
 

@@ -1,4 +1,5 @@
 " Indentation options:
+set cindent
 set cino=g0
 
 
@@ -17,7 +18,7 @@ if !exists("*Switch_header_impl")
 		if filename =~? '\.h\%(pp\)\?$'
 			" We are currently editing a header file
 			let extension = 'c'
-		elseif filename =~? '\.c\%(pp\)\?$'
+		elseif filename =~? '\.c\%(pp\|c\)\?$'
 			" We are currently editing an implementation file
 			let extension = 'h'
 		else
@@ -33,6 +34,10 @@ if !exists("*Switch_header_impl")
 			execute "normal :e " . newfile . "\<cr>"
 		elseif filereadable( basename . '.' . extension . 'pp' )
 			let newfile = basename . '.' . extension . 'pp'
+			" echoerr newfile
+			execute "normal :e " . newfile . "\<cr>"
+		elseif filereadable( basename . '.' . extension . 'c' )
+			let newfile = basename . '.' . extension . 'c'
 			" echoerr newfile
 			execute "normal :e " . newfile . "\<cr>"
 		end
