@@ -304,3 +304,6 @@ let g:Imap_PlaceHolderEnd = '+>>'
 imap <buffer><silent> <S-ESC> <<++>><ESC>
 
 
+" Spelling of difficult names
+call IMAP("Frechet", "Fréchet", "tex")
+call IMAP("Gateaux", "Gâteaux", "tex")
