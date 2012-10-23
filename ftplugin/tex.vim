@@ -212,11 +212,11 @@ let g:Tex_LabelAfterContent = 0
 
 " Customized Section maps
 let g:Tex_SectionMaps = 0
-call IMAP("SPA", "\\part{<+name+>}\<CR>%%fakechapter: Intro\<CR>\\label{<+label+>}\<CR><++>", "tex")
-call IMAP("SCH", "\\chapter{<+name+>}\<CR>%%fakesection: Intro\<CR>\\label{<+label+>}\<CR><++>", "tex")
-call IMAP("SSE", "\\section{<+name+>}\<CR>%%fakesubsection: Intro\<CR>\\label{<+label+>}\<CR><++>", "tex")
-call IMAP("SSS", "\\subsection{<+name+>}\<CR>%%fakesubsubsection: Intro\<CR>\\label{<+label+>}\<CR><++>", "tex")
-call IMAP("SS2", "\\subsubsection{<+name+>}\<CR>%%fakeparagraph: Intro\<CR>\\label{<+label+>}\<CR><++>", "tex")
+call IMAP("SPA", "\\part{<+name+>}\<CR>%%fakechapter: Intro\<CR>\\label{part:<+label+>}\<CR><++>", "tex")
+call IMAP("SCH", "\\chapter{<+name+>}\<CR>%%fakesection: Intro\<CR>\\label{chap:<+label+>}\<CR><++>", "tex")
+call IMAP("SSE", "\\section{<+name+>}\<CR>%%fakesubsection: Intro\<CR>\\label{sec:<+label+>}\<CR><++>", "tex")
+call IMAP("SSS", "\\subsection{<+name+>}\<CR>%%fakesubsubsection: Intro\<CR>\\label{subsec:<+label+>}\<CR><++>", "tex")
+call IMAP("SS2", "\\subsubsection{<+name+>}\<CR>%%fakeparagraph: Intro\<CR>\\label{sssec:<+label+>}\<CR><++>", "tex")
 call IMAP("SPG", "\\paragraph{<+name+>}\<CR><++>", "tex")
 call IMAP("SSP", "\\subparagraph{<+name+>}\<CR><++>", "tex")
 
