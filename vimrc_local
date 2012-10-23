@@ -56,7 +56,14 @@ hi DiffChange guibg=LightBlue ctermbg=DarkCyan ctermfg=White
 hi DiffText gui=NONE guibg=LightRed ctermbg=DarkCyan ctermfg=Yellow
 
 if !has('gui_running')
-	hi Normal ctermbg=223
+	if $TERM == "xterm"
+		set t_Co=256
+		hi Normal ctermbg=223
+		" Set cursor color:
+		silent !echo -ne "\033]12;RoyalBlue1\007"
+	else
+		hi Normal ctermbg=7
+	end
 end
 
 
