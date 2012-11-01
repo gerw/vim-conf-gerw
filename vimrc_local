@@ -283,3 +283,8 @@ function SearchMotion( mode )
 		" let b:searchedWord = word
 	end
 endfunction
+
+
+" Write with sudo (if you forgot to start vim as root)
+" % is replaced by current file name
+command Sudow w !sudo tee % > /dev/null
