@@ -26,6 +26,9 @@ let g:Tex_BIBINPUTS = $HOME."/work/Resources/Bibliography/,".$HOME."/work/Projec
 
 " no Tex-Menus
 let g:Tex_Menus = 0
+" Do not scan for packages. This is slow and we don't need it.
+let g:Tex_PackagesMenu = 0
+
 
 " Do not fold any Environments.
 let g:Tex_FoldedEnvironments = ''
@@ -33,7 +36,6 @@ let g:Tex_FoldedEnvironments = ''
 let g:Tex_FoldedMisc = 'preamble,<<<'
 " Fold all sections.
 let g:Tex_FoldedSections = 'part|addpart,chapter|addchap,section|addsec,subsection,subsubsection,paragraph,subparagraph'
-
 
 
 
