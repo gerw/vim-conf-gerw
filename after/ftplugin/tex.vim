@@ -21,7 +21,8 @@ call IMAP ('\left[]', '\left[ <++> \right]<++>', "tex")
 
 
 " remove binding to <m-i> = é
-iunmap <buffer> <m-i>
+silent! iunmap <buffer> <m-i>
+let v:errmsg = ''
 
 
 "" Add graphicx to the detected packages (such that EFI uses \includegraphics)
