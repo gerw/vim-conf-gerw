@@ -151,7 +151,7 @@ map <silent> <F10> :call Show_svn_diff()<cr>gg
 function Show_svn_diff()
 	let filename=expand("%")
 	new
-	exe "read !svn diff ".filename
+	exe "0read !svn diff ".filename
 	set syntax=diff buftype=nofile
 	setlocal nomodifiable
 	setlocal bufhidden=delete
