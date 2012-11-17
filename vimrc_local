@@ -151,7 +151,11 @@ map <silent> <F10> :call Show_svn_diff()<cr>gg
 function Show_svn_diff()
 	let filename=expand("%")
 	new
-	exe "0read !svn diff ".filename
+	if isdirectory(expand('%:h').'/.svn')
+		exe "0read !svn diff ".filename
+	else
+		exe "0read !git diff HEAD ".filename
+	end
 	set syntax=diff buftype=nofile
 	setlocal nomodifiable
 	setlocal bufhidden=delete
@@ -163,7 +167,11 @@ function Show_full_svn_diff()
 	let filename=expand("%")
 	diffthis
 	rightb vnew
-	exe "0read !svn cat ".filename
+	if isdirectory(expand('%:h').'/.svn')
+		exe "0read !svn cat ".filename
+	else
+		exe "0read !git show HEAD:".filename
+	end
 	normal jdd
 	set syntax=tex buftype=nofile
 	setlocal nomodifiable
