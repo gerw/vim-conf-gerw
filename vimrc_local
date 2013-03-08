@@ -150,8 +150,9 @@ imap <a-p> <c-r>0
 map <silent> <F10> :call Show_svn_diff()<cr>gg
 function Show_svn_diff()
 	let filename=expand("%")
+	let is_svn=isdirectory(expand('%:h').'/.svn')
 	new
-	if isdirectory(expand('%:h').'/.svn')
+	if is_svn
 		exe "0read !svn diff ".filename
 	else
 		exe "0read !git diff HEAD ".filename
@@ -165,12 +166,13 @@ endfunction
 map <silent> <S-F10> :call Show_full_svn_diff()<cr>gg
 function Show_full_svn_diff()
 	let filename=expand("%")
+	let is_svn=isdirectory(expand('%:h').'/.svn')
 	diffthis
 	rightb vnew
-	if isdirectory(expand('%:h').'/.svn')
+	if is_svn
 		exe "0read !svn cat ".filename
 	else
-		exe "0read !git show HEAD:".filename
+		exe "0read !git show HEAD:./".filename
 	end
 	normal jdd
 	set syntax=tex buftype=nofile
