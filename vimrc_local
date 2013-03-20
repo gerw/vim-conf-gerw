@@ -149,13 +149,21 @@ imap <a-p> <c-r>0
 " SVN-diff??
 map <silent> <F10> :call Show_svn_diff()<cr>gg
 function Show_svn_diff()
-	let filename=expand("%")
 	let is_svn=isdirectory(expand('%:h').'/.svn')
-	new
 	if is_svn
+		let filename=expand("%")
+		new
 		exe "0read !svn diff ".filename
 	else
+		let opwd=getcwd()
+		let dirname=expand("%:h")
+		let filename=expand("%:t")
+		new
+		" Change into directory of file and back, since git has to be invoked
+		" inside the git tree.
+		exec 'lcd ' . dirname
 		exe "0read !git diff HEAD ".filename
+		exec 'lcd ' . opwd
 	end
 	set syntax=diff buftype=nofile
 	setlocal nomodifiable
