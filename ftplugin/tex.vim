@@ -15,6 +15,7 @@ let g:Tex_HotKeyMappings='align,align*, bmatrix'
 " let g:Tex_BIBINPUTS = '~/work/Resources/Bibliography,~/work/Projects/Plasticity/Resources'
 
 "" DEBUG variable:
+" let g:SyntaxFolds_Debug = 1
 " let g:Tex_Debug = 1
 " let g:Tex_DebugLog = "vim-latex-suite.log"
 
