@@ -165,23 +165,34 @@ endfunction
 
 map <silent> <S-F10> :call Show_full_svn_diff()<cr>gg
 function Show_full_svn_diff()
-	let filename=expand("%")
 	let is_svn=isdirectory(expand('%:h').'/.svn')
+	" Save filetype
+	let ft=&ft
 	diffthis
-	rightb vnew
 	if is_svn
+		let filename=expand("%")
+		rightb vnew
 		exe "0read !svn cat ".filename
 	else
-		exe "0read !git show HEAD:./".filename
+		let opwd=getcwd()
+		let dirname=expand("%:h")
+		let filename=expand("%:t")
+		rightb vnew
+		" Change into directory of file and back, since git has to be invoked
+		" inside the git tree.
+		exec 'lcd ' . dirname
+		exe "0read !git show HEAD:$(relpath $(git rev-parse --show-toplevel) ".filename . ")"
+		exec 'lcd ' . opwd
 	end
 	normal jdd
-	set syntax=tex buftype=nofile
+	setlocal buftype=nofile
 	setlocal nomodifiable
 	setlocal bufhidden=delete
+	" Apply filetype
+	exec 'setlocal ft=' . ft
 	diffthis
 	autocmd BufDelete <buffer> diffoff!
 	nmap <silent><buffer> <c-c> :bdel<cr>
-	" autocmd BufDelete <buffer> windo "call MakeTexFolds(1)"
 endfunction
 
 
