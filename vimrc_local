@@ -100,6 +100,9 @@ imap <C-D> <Plug>IMAP_JumpForward
 nmap <C-D> <Plug>IMAP_JumpForward
 vmap <C-D> <Plug>IMAP_JumpForward
 
+" Do not change into select mode after IMAP_JumpForward
+let g:Imap_GoToSelectMode = 0
+
 
 
 "tabulator um durch den buffer zu wechseln
