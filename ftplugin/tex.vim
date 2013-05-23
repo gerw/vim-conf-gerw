@@ -203,6 +203,7 @@ let g:Tex_EnvLabelprefix_lemma = "lem:"
 let g:Tex_EnvLabelprefix_remark = "rem:"
 let g:Tex_EnvLabelprefix_theorem = "thm:"
 let g:Tex_EnvLabelprefix_corollary = "cor:"
+let g:Tex_EnvLabelprefix_proposition = "prop:"
 
 let g:Tex_EnvLabelprefix_align = "eq:"
 let g:Tex_EnvLabelprefix_equation = "eq:"
