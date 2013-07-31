@@ -209,6 +209,9 @@ let g:Tex_EnvLabelprefix_align = "eq:"
 let g:Tex_EnvLabelprefix_equation = "eq:"
 let g:Tex_EnvLabelprefix_subequations = "eq:"
 
+let g:Tex_Env_lemdef = "\\begin{lemdef}\<CR>\\label{lemdef:<+label+>}\<CR><+content+>\<CR>\\end{lemdef}\<CR><++>"
+let g:Tex_Env_example = "\\begin{example}\<CR>\\label{ex:<+label+>}\<CR><+content+>\<CR>\\end{example}\<CR><++>"
+
 " Created environments should end in <CR>+<++>
 let g:Tex_EnvEndWithCR = 1
 " Created labels before or after content?
