@@ -149,10 +149,17 @@ autocmd BufNewFile *.{h,hpp} call <SID>insert_gates()
 imap <a-p> <c-r>0
 
 
-" SVN-diff??
+" Helper function: Is this a svn repo?
+" ====================================
+function Is_svn()
+	return system('svn info > /dev/null 2>&1 && echo 1 || echo 0')
+endfunction
+
+" Show a SVN/Git-diff in a new buffer
+" ===================================
 map <silent> <F10> :call Show_svn_diff()<cr>gg
 function Show_svn_diff()
-	let is_svn=isdirectory(expand('%:h').'/.svn')
+	let is_svn = Is_svn()
 	if is_svn
 		let filename=expand("%")
 		new
@@ -174,9 +181,11 @@ function Show_svn_diff()
 	nmap <silent><buffer> <c-c> :bdel<cr>
 endfunction
 
+" Show the SVN base/Git HEAD in a new buffer with enabled diff
+" ============================================================
 map <silent> <S-F10> :call Show_full_svn_diff()<cr>gg
 function Show_full_svn_diff()
-	let is_svn=isdirectory(expand('%:h').'/.svn')
+	let is_svn = Is_svn()
 	" Save filetype
 	let ft=&ft
 	diffthis
