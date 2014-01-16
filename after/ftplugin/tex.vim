@@ -19,6 +19,16 @@ call IMAP ('\left\{\}', '\left\{ <++> \right\}<++>', "tex")
 call IMAP ('\left\{}', '\left\{ <++> \right\}<++>', "tex")
 call IMAP ('\left[]', '\left[ <++> \right]<++>', "tex")
 
+" Set up IMAP commands for \Bigh() and co.
+for type in ['big', 'Big', 'bigg', 'Bigg', 'var', 'normal']
+	for bracket in ['()', '[]', '\{\}']
+		call IMAP (type . 'h' . bracket, type . 'h' . bracket . '{<++>}', "tex")
+	endfor
+	" And some special curlies
+	call IMAP (type . 'h' . '{}', type . 'h' . '\{\}' . '{<++>}', "tex")
+	call IMAP (type . 'h' . '\{}', type . 'h' . '\{\}' . '{<++>}', "tex")
+endfor
+
 
 " remove binding to <m-i> = é
 silent! iunmap <buffer> <m-i>
