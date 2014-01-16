@@ -17,6 +17,9 @@ augroup filetypedetect
 	"Set filetype for vimperator config
 	au! BufNewFile,BufRead {.,}vimperatorrc setfiletype vimperator
 
-	"Set filetype for wikipages (on euler), when opened from vimperator
+	" Set filetype for wikipages (on euler), when opened from vimperator
 	au! BufRead /tmp/vimperator-euler.mathematik.tu-chemnitz.de*.tmp setfiletype wikipedia
+
+	" Set filetype for math.stackexchange, when opened from vimperator
+	au! BufRead /tmp/vimperator-math.stackexchange.com*.tmp setfiletype tex
 augroup END
