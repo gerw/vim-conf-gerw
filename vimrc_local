@@ -12,7 +12,7 @@ set backup
 set backupext=.bak
 set hlsearch
 set hidden                      " allow editing multiple unsaved buffers
-set noignorecase                " use case-sensitive matching also when doing *, see also smartcase
+set ignorecase                  " use case-insensitive matching
 set incsearch                   " show matches as soon as possible
 set noautowrite                 " don't automatically write on :next, etc
 set nocompatible                " vim defaults, not vi!
