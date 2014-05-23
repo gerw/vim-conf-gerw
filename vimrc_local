@@ -12,8 +12,8 @@ set backup
 set backupext=.bak
 set hlsearch
 set hidden                      " allow editing multiple unsaved buffers
-set ignorecase
-set incsearch                  " show matches as soon as possible
+set noignorecase                " use case-sensitive matching also when doing *, see also smartcase
+set incsearch                   " show matches as soon as possible
 set noautowrite                 " don't automatically write on :next, etc
 set nocompatible                " vim defaults, not vi!
 set nrformats-=octal            " Don't consider numbers starting with 0 as octal when incrementing/decrementing via c-a, c-x
@@ -28,7 +28,7 @@ set nostartofline         " Do not go to first character of line when changing b
 set tabstop=2
 set undolevels=1000             " number of forgivable mistakes
 
-set path=. " the default of path includes '/usr/include'. I do not want this.
+set path=., " the default of path includes '/usr/include'. I do not want this.
 
 "autocomplete like the bash
 "chance completemode to get a more natural feeling
