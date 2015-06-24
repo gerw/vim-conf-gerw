@@ -440,3 +440,7 @@ else
 	command! -bang -complete=buffer -nargs=? Bdelete call s:Bdelete('<bang>', '<args>')
 	" nnoremap <silent> <Leader>bd :Bdelete<CR>
 endif
+
+
+" Always search case-sensitive when using g*
+nnoremap <silent> g* /\<<C-R>=expand('<cword>')<CR>\>\C<CR>
