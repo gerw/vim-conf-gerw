@@ -330,7 +330,7 @@ endfunction
 " Insert a '\langde{' before and '}\langen{}' after the selection.
 " Helper Function: Insert at position
 function InsertAt(string, pos, insertstring)
-	if a:pos <= 1
+	if a:pos <= 0
 		return a:insertstring . a:string
 	else
 		return a:string[:(a:pos-1)] . a:insertstring . a:string[(a:pos):]
