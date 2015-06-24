@@ -96,3 +96,27 @@ fun! ShowName()
 endfun
 
 map <F6> :call ShowName() <CR>
+
+
+" Set up the path option, such that gf works for dolfin header files.
+let s:dolfin_version = substitute(system('dolfin-version'), '\n$', '', '')
+if !v:shell_error
+	" source directory on my laptop:
+	let s:src_dir = '/usr/local/FEniCS/' . s:dolfin_version . '/src/dolfin-' . s:dolfin_version . '/'
+	let s:inc_dir = '/usr/local/FEniCS/' . s:dolfin_version . '/include/'
+	" alternative source directory (on mrz compute servers):
+	let s:src_dir_alt = '/LOCAL/Software/FEniCS-' . s:dolfin_version . '/src/dolfin-' . s:dolfin_version . '/'
+	let s:inc_dir_alt = '/LOCAL/Software/FEniCS-' . s:dolfin_version . '/include/'
+	if isdirectory(s:src_dir)
+		let &l:path = &l:path . ',' . s:src_dir . '**'
+	elseif isdirectory(s:inc_dir)
+		let &l:path = &l:path . ',' . s:inc_dir . '**'
+	elseif isdirectory(s:src_dir_alt)
+		let &l:path = &l:path . ',' . s:src_dir_alt . '**'
+	elseif isdirectory(s:inc_dir_alt)
+		let &l:path = &l:path . ',' . s:inc_dir_alt . '**'
+	else
+		" TODO: scan environment variables, e.g. $CPLUS_INCLUDE_PATH??
+	end
+endif
+setlocal suffixesadd=.h
