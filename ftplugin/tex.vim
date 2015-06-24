@@ -195,6 +195,7 @@ let g:Tex_TEXINPUTS = $HOME . '/work/Resources/LaTeX/,' . $HOME . '/work/Talks/A
 " Macros for Creating of Environments:
 let g:Tex_Env_block = "\\begin{block}{<++>}\<CR><++>\<CR>\\end{block}\<CR><++>"
 let g:Tex_Env_frame = "\\begin{frame}\<CR>\\frametitle{<++>}\<CR><++>\<CR>\\end{frame}\<CR><++>"
+let g:Tex_Env_algorithm = "\\begin{algorithm}[<+title+>]\\hfill\\par\<CR>\\label{alg:<+label+>}\<CR>\\begin{algorithmic}[1]\<CR>\\REQUIRE <+input+>\<CR>\\ENSURE <+output+>\<CR>\\end{algorithmic}\<CR>\\end{algorithm}\<CR><++>"
 
 " Customization of labels of environments
 let g:Tex_EnvLabelprefix_assumption = "asm:"
