@@ -17,6 +17,7 @@ let g:Tex_HotKeyMappings='align,align*, bmatrix'
 "" DEBUG variable:
 " let g:SyntaxFolds_Debug = 1
 " let g:Tex_Debug = 1
+" let g:Imap_Debug = 1
 " let g:Tex_DebugLog = "vim-latex-suite.log"
 
 " Set $BIBINPUTS
