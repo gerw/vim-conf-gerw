@@ -193,10 +193,7 @@ set path+=$HOME/work/Resources/LaTeX/
 let g:Tex_TEXINPUTS = $HOME . '/work/Resources/LaTeX/,' . $HOME . '/work/Talks/Archive/**/*'
 
 
-" Macros for Creating of Environments:
-let g:Tex_Env_block = "\\begin{block}{<++>}\<CR><++>\<CR>\\end{block}\<CR><++>"
-let g:Tex_Env_frame = "\\begin{frame}\<CR>\\frametitle{<++>}\<CR><++>\<CR>\\end{frame}\<CR><++>"
-let g:Tex_Env_algorithm = "\\begin{algorithm}[<+title+>]\\hfill\\par\<CR>\\label{alg:<+label+>}\<CR>\\begin{algorithmic}[1]\<CR>\\REQUIRE <+input+>\<CR>\\ENSURE <+output+>\<CR>\\end{algorithmic}\<CR>\\end{algorithm}\<CR><++>"
+""""" Macros for Creating of Environments:
 
 " Customization of labels of environments
 let g:Tex_EnvLabelprefix_assumption = "asm:"
@@ -213,6 +210,7 @@ let g:Tex_EnvLabelprefix_subequations = "eq:"
 
 let g:Tex_Env_lemdef = "\\begin{lemdef}\<CR>\\label{lemdef:<+label+>}\<CR><+content+>\<CR>\\end{lemdef}\<CR><++>"
 let g:Tex_Env_example = "\\begin{example}\<CR>\\label{ex:<+label+>}\<CR><+content+>\<CR>\\end{example}\<CR><++>"
+let g:Tex_Env_algorithm = "\\begin{algorithm}[<+title+>]\\hfill\\par\<CR>\\label{alg:<+label+>}\<CR>\\begin{algorithmic}[1]\<CR>\\REQUIRE <+input+>\<CR>\\ENSURE <+output+>\<CR>\\end{algorithmic}\<CR>\\end{algorithm}\<CR><++>"
 
 " Created environments should end in <CR>+<++>
 let g:Tex_EnvEndWithCR = 1
@@ -228,6 +226,15 @@ call IMAP("SSS", "\\subsection{<+name+>}\<CR>%%fakesubsubsection: Intro\<CR>\\la
 call IMAP("SS2", "\\subsubsection{<+name+>}\<CR>%%fakeparagraph: Intro\<CR>\\label{sssec:<+label+>}\<CR><++>", "tex")
 call IMAP("SPG", "\\paragraph{<+name+>}\<CR><++>", "tex")
 call IMAP("SSP", "\\subparagraph{<+name+>}\<CR><++>", "tex")
+
+" Subequations environment
+call IMAP("ESE", "\<C-r>=Tex_PutEnvironment('subequations')\<CR>", 'tex')
+
+" Block and frame environment in beamer
+let g:Tex_Env_block = "\\begin{block}{<++>}\<CR><++>\<CR>\\end{block}\<CR><++>"
+let g:Tex_Env_frame = "\\begin{frame}\<CR>\\frametitle{<++>}\<CR><++>\<CR>\\end{frame}\<CR><++>"
+call IMAP("EBL", g:Tex_Env_block, "tex")
+call IMAP("EFR", g:Tex_Env_frame, "tex")
 
 " No concealing in TeX
 let g:tex_conceal = ""
