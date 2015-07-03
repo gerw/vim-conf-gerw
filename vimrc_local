@@ -48,23 +48,37 @@ let g:DrChipTopLvlMenu = ""
 set statusline=%<%f\ %h%y%m%r%=%-14.(%l,%c%V%)\ %P
 set laststatus=2
 
-syn on
-colorscheme PapayaWhip
-" Customize Color scheme
-highlight FoldColumn guibg=Moccasin guifg=Red gui=bold
-hi DiffChange guibg=LightBlue ctermbg=DarkCyan ctermfg=White
-hi DiffText gui=NONE guibg=LightRed ctermbg=DarkCyan ctermfg=Yellow
 
-if !has('gui_running')
-	if $TERM == "xterm"
-		set t_Co=256
-		hi Normal ctermbg=223
-		" Set cursor color:
-		silent !echo -ne "\033]12;RoyalBlue1\007"
-	else
-		hi Normal ctermbg=7
-	end
+" Set up the colorscheme in the console.
+if !has('gui_running') && $TERM == "xterm"
+	" Tell Vim that xterm understands (at least) 16 colors
+	set t_Co=16
+
+	" Load correct Xresources
+	silent !term-recolor.sh < ~/dotfiles/solarized_xresources/Xresources.original
+
+	" Unload Xresources when vim finishes.
+	autocmd VimLeave * !term-recolor-current.sh
 end
+
+" Enable syntax highlighting
+syntax enable
+
+" Set default background automatically.
+let g:background = system('get_current_colorscheme.sh')
+if g:background =~? "dark\\|light"
+	let &background= substitute(g:background, "\n", "", "")
+else
+	set background=dark
+end
+
+" No menu.
+let g:solarized_menu=0
+
+" Setup the solarized colorscheme
+colorscheme solarized
+call togglebg#map("<F4>")
+
 
 
 filetype plugin on
