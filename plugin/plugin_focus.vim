@@ -3,7 +3,7 @@ func! Focus(command, vim_command, key)
   silent exe 'wincmd ' . a:vim_command
   let neww = winnr()
   if oldw == neww
-    if $HOST=="cantor" || $HOST=="kunigunde"
+    if hostname()=="cantor" || hostname()=="kunigunde"
       silent exe '!i3-msg -q focus ' . a:command
     else
       silent exe '!xdotool key --delay 0 --clearmodifiers alt+' . a:key
