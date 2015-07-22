@@ -21,4 +21,4 @@
 	url = git@github.com:gerw/vim-latex-suite.git
 [submodule "bundle/vim-colors-solarized"]
 	path = bundle/vim-colors-solarized
-	url = ./bundle/vim-colors-solarized
+	url = git@github.com:gerw/vim-colors-solarized.git
