@@ -11,6 +11,7 @@ function GetHighlight(name)
 	exec "highlight" a:name
 	redir end
 	let format = substitute(output, ".*xxx *", "", "")
+	let format = substitute(format, "\n", " ", "g")
 	return format
 endfunction
 
