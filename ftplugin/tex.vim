@@ -34,6 +34,8 @@ let g:Tex_Menus = 0
 " Do not scan for packages. This is slow and we don't need it.
 let g:Tex_PackagesMenu = 0
 
+" Customize template directory
+let g:Tex_CustomTemplateDirectory = '~/work/Resources/LaTeX/Templates'
 
 " Do not fold any Environments.
 let g:Tex_FoldedEnvironments = ''
