@@ -16,7 +16,17 @@ func! Focus(command, vim_command, key)
 endfunction
 
 " Focus!
-nmap <silent> gwh :call Focus('left', 'h','F21')<CR>
-nmap <silent> gwj :call Focus('down', 'j','F22')<CR>
-nmap <silent> gwk :call Focus('up',   'k','F23')<CR>
-nmap <silent> gwl :call Focus('right','l','F24')<CR>
+nmap <silent> <F16> :call Focus('left', 'h','F21')<CR>
+nmap <silent> <F17> :call Focus('down', 'j','F22')<CR>
+nmap <silent> <F18> :call Focus('up',   'k','F23')<CR>
+nmap <silent> <F19> :call Focus('right','l','F24')<CR>
+
+imap <silent> <F16> <C-O>:call Focus('left', 'h','F21')<CR>
+imap <silent> <F17> <C-O>:call Focus('down', 'j','F22')<CR>
+imap <silent> <F18> <C-O>:call Focus('up',   'k','F23')<CR>
+imap <silent> <F19> <C-O>:call Focus('right','l','F24')<CR>
+
+vmap <silent> <F16> :<C-U>call Focus('left', 'h','F21')<CR>gv
+vmap <silent> <F17> :<C-U>call Focus('down', 'j','F22')<CR>gv
+vmap <silent> <F18> :<C-U>call Focus('up',   'k','F23')<CR>gv
+vmap <silent> <F19> :<C-U>call Focus('right','l','F24')<CR>gv

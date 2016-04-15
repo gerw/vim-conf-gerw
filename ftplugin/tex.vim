@@ -26,6 +26,9 @@ let g:Tex_BIBINPUTS = $HOME."/work/Resources/Bibliography/,".$HOME."/work/Projec
 " Bildverzeichnis
 "let g:Tex_ImageDir = ''
 
+" Template directory
+let g:Tex_CustomTemplateDirectory = $HOME."/work/Resources/LaTeX/Templates/"
+
 " no Tex-Menus
 let g:Tex_Menus = 0
 " Do not scan for packages. This is slow and we don't need it.

@@ -326,6 +326,7 @@ function SearchMotion( mode )
 		let wordStart = startpos[2]-1
 		let wordEnd = endpos[2]-1
 		let word = line[(wordStart):(wordEnd)]
+		let word = escape(word, '\')
 		" call search(word)
 		" call matchadd('search', word)
 		call histadd('search', word)
