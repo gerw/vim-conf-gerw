@@ -15,6 +15,17 @@ function GetHighlight(name)
 	return format
 endfunction
 
+function GetFG(name)
+	let format = GetHighlight(a:name)
+	let ctermfg = matchstr( format, 'ctermfg=\(#\|\w\)*' )
+	let guifg = matchstr( format, 'guifg=\(#\|\w\)*' )
+	return ctermfg . " " . guifg
+endfunction
+
+function FGToBG(format)
+	return substitute( a:format, "fg", "bg", "g" )
+endfunction
+
 function SwapHighlight(hl1, hl2)
 	let s:hl1 = GetHighlight( a:hl1 )
 	let s:hl2 = GetHighlight( a:hl2 )
@@ -32,15 +43,14 @@ function! CustomizeSolarized()
 	if exists("g:colors_name") && g:colors_name == "solarized"
 
 		" Get the blue color.
-		let s:blue    = GetHighlight("Identifier")
-		let s:cyan    = GetHighlight("Constant")
-		let s:green   = GetHighlight("Statement")
-		let s:orange  = GetHighlight("PreProc")
-		let s:yellow  = GetHighlight("Type")
-		let s:red     = GetHighlight("Special")
-		let s:violet  = GetHighlight("Underlined")
-		" BUT BOLD!:
-		let s:magenta = GetHighlight("Todo")
+		let s:blue    = GetFG("Identifier")
+		let s:cyan    = GetFG("Constant")
+		let s:green   = GetFG("Statement")
+		let s:orange  = GetFG("PreProc")
+		let s:yellow  = GetFG("Type")
+		let s:red     = GetFG("Special")
+		let s:violet  = GetFG("Underlined")
+		let s:magenta = GetFG("Todo")
 
 
 		let s:bold = "gui=bold cterm=bold"
@@ -55,13 +65,15 @@ function! CustomizeSolarized()
 		call SetHighlight("SpecialKey", s:blue )
 
 		let s:folded = GetHighlight("Folded")
-		let s:folded = substitute(s:folded, "\n", "", "g")
 		let s:folded = substitute(s:folded, "underline", "", "g" )
 		let s:folded = substitute(s:folded, "\\a*= ", " ", "g" )
 		let g:folded = s:folded
 		call SetHighlight("Folded", s:folded)
 		" call SetHighlight("Folded", s:folded)
 		" call SetHighlight("Folded", s:blue . " " . s:ubold )
+
+		call SetHighlight("Error", s:yellow . " " . FGToBG(s:red) )
+
 
 		" call SwapHighlight("Comment", "Statement")
 	endif
