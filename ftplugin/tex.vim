@@ -26,9 +26,6 @@ let g:Tex_BIBINPUTS = $HOME."/work/Resources/Bibliography/,".$HOME."/work/Projec
 " Bildverzeichnis
 "let g:Tex_ImageDir = ''
 
-" Template directory
-let g:Tex_CustomTemplateDirectory = $HOME."/work/Resources/LaTeX/Templates/"
-
 " Which command should be used for completed references?
 let g:Tex_RefCompletionCommand = "autoref"
 
