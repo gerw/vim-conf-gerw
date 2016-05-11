@@ -7,9 +7,15 @@ function! BibtexToPhp() range
 
 		let line = getline(i)
 
+		" Special case: empty line: Do not touch.
+		if line == ""
+			continue
+		end
+
 		" Special cases: First/last line of entry
-		if match(line, "^@\\w*{\\(\\w*\\),") != -1
-			let line = substitute(line, "^@\\w*{\\(\\w*\\),", "$bibliography[\"\\1\"] = array(", "")
+		let pattern_first_line = '^@\w*{\([[:alnum:]:]*\),$'
+		if match(line, pattern_first_line) != -1
+			let line = substitute(line, pattern_first_line, "$bibliography[\"\\1\"] = array(", "")
 		elseif match(line, "^}$") != -1
 			let line = ");"
 		else
