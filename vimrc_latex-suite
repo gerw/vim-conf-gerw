@@ -1,0 +1,7 @@
+" This provides a very simple vim setup, with only latex-suite being loaded.
+"
+" Call via:
+" "gvim" -U NONE -u ~/.vim/vimrc_latex-suite
+let &rtp = substitute(&rtp, '\.vim\>', '.vim/bundle/vim-latex-suite', 'g')
+
+filetype plugin on
