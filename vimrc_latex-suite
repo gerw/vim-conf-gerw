@@ -4,4 +4,9 @@
 " "gvim" -U NONE -u ~/.vim/vimrc_latex-suite
 let &rtp = substitute(&rtp, '\.vim\>', '.vim/bundle/vim-latex-suite', 'g')
 
+set backspace=indent,eol,start
+set nocompatible                " vim defaults, not vi!
+
+let g:tex_flavor='latex'
+
 filetype plugin on
