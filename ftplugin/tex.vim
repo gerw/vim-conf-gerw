@@ -7,6 +7,9 @@ set sw=2
 "" all the figure labels. Very useful!
 "set iskeyword+=:
 
+" In Tex-files, "_" is not to be considered as a keyword character.
+set iskeyword-=_
+
 let g:Tex_HotKeyMappings='align,align*, bmatrix'
 
 
