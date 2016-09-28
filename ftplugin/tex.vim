@@ -48,6 +48,9 @@ let g:Tex_FoldedMisc = 'preamble,<<<'
 let g:Tex_FoldedSections = 'part|addpart,chapter|addchap,section|addsec,subsection,subsubsection,paragraph,subparagraph'
 
 
+" Which warnings should be ignored? None.
+let g:Tex_IgnoreLevel = 7
+
 
 :cnoremap <space> <C-R>=Replace_space()<CR>
 "" Replace spaces in search to map also line breaks
