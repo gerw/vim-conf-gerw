@@ -49,7 +49,7 @@ let g:Tex_FoldedSections = 'part|addpart,chapter|addchap,section|addsec,subsecti
 
 
 " Which warnings should be ignored? None.
-let g:Tex_IgnoreLevel = 7
+let g:Tex_IgnoreLevel = 0
 
 
 :cnoremap <space> <C-R>=Replace_space()<CR>
