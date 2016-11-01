@@ -40,3 +40,6 @@ patches-*
 
 ## the history of the netrw plugin
 .netrwhist
+
+# The directory containing the undo files
+.undo

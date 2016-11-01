@@ -8,8 +8,6 @@ set modelines=0         " no modelines, see http://www.guninski.com/vim1.html
 set autoindent          " always set autoindenting on
 set autoread                    " watch for file changes by other programs
 set backspace=indent,eol,start
-set backup
-set backupext=.bak
 set hlsearch
 set hidden                      " allow editing multiple unsaved buffers
 set ignorecase                  " use case-insensitive matching
@@ -26,7 +24,6 @@ set showcmd             " Show (partial) command in status line.
 set smartcase
 set nostartofline         " Do not go to first character of line when changing buffers.
 set tabstop=2
-set undolevels=1000             " number of forgivable mistakes
 
 set path=., " the default of path includes '/usr/include'. I do not want this.
 
@@ -47,6 +44,13 @@ let g:DrChipTopLvlMenu = ""
 " Statusline:
 set statusline=%<%f\ %h%y%m%r%=%-14.(%l,%c%V%)\ %P
 set laststatus=2
+
+
+" Persistent undo file:
+set undofile
+set undodir=$HOME/.vim/.undo
+silent call system('mkdir -p ' . &undodir) " create the directory
+set undolevels=1000             " number of forgivable mistakes
 
 
 " Set up the colorscheme in the console.
