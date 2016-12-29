@@ -2,10 +2,15 @@
 
 " Call via:
 " "gvim" -U NONE -u ~/.vim/vimrc_latex-suite
+
+" vim defaults, not vi!
+set nocompatible
+
+" Adjust the runtime path
 let &rtp = substitute(&rtp, '\.vim\>', '.vim/bundle/vim-latex-suite', 'g')
 
-set backspace=indent,eol,start  " Workaround for https://github.com/vim-latex/vim-latex/issues/53
-set nocompatible                " vim defaults, not vi!
+" Workaround for https://github.com/vim-latex/vim-latex/issues/53
+set backspace=indent,eol,start
 
 " IMPORTANT: grep will sometimes skip displaying the file name if you
 " search in a singe file. This will confuse Latex-Suite. Set your grep
