@@ -1,3 +1,6 @@
+" Remove FEM mapping
+call IUNMAP('FEM', 'tex')
+
 " matchit matcht auch \left und \right
 if exists("loaded_matchit")
   let b:match_words .= ',\\left\>:\\right\>'
