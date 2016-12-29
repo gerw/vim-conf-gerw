@@ -33,11 +33,6 @@ for type in ['big', 'Big', 'bigg', 'Bigg', 'var', 'normal']
 endfor
 
 
-" remove binding to <m-i> = é
-silent! iunmap <buffer> <m-i>
-let v:errmsg = ''
-
-
 "" Add graphicx to the detected packages (such that EFI uses \includegraphics)
 if !exists("g:Tex_package_detected")
 	let g:Tex_package_detected = 'graphicx'
