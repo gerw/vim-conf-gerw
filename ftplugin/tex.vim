@@ -30,7 +30,7 @@ let g:Tex_BIBINPUTS = $HOME."/work/Resources/Bibliography/,".$HOME."/work/Projec
 "let g:Tex_ImageDir = ''
 
 " Which command should be used for completed references?
-let g:Tex_RefCompletionCommand = "autoref"
+let g:Tex_RefCompletionCommand = "cref"
 
 " no Tex-Menus
 let g:Tex_Menus = 0
