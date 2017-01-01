@@ -245,7 +245,7 @@ call IMAP("ESE", "\<C-r>=Tex_PutEnvironment('subequations')\<CR>", 'tex')
 let g:Tex_Env_block = "\\begin{block}{<++>}\<CR><++>\<CR>\\end{block}\<CR><++>"
 let g:Tex_Env_frame = "\\begin{frame}\<CR>\\frametitle{<++>}\<CR><++>\<CR>\\end{frame}\<CR><++>"
 call IMAP("EBL", g:Tex_Env_block, "tex")
-call IMAP("EFR", g:Tex_Env_frame, "tex")
+" call IMAP("EFR", g:Tex_Env_frame, "tex") " in after/ftplugin/tex.vim
 
 " No concealing in TeX
 let g:tex_conceal = ""

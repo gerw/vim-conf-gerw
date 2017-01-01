@@ -32,6 +32,8 @@ for type in ['big', 'Big', 'bigg', 'Bigg', 'var', 'normal']
 	call IMAP (type . 'h' . '\{}', type . 'h' . '\{\}' . '{<++>}<++>', "tex")
 endfor
 
+" Mapping for \begin{frame}...\end{frame}
+call IMAP("EFR", g:Tex_Env_frame, "tex")
 
 "" Add graphicx to the detected packages (such that EFI uses \includegraphics)
 if !exists("g:Tex_package_detected")
