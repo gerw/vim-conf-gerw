@@ -362,10 +362,10 @@ function InsertLang()
 	let endpos = getpos("'>")
 	" Modify the lines
 	let endline = getline(endpos[1])
-	let endline = InsertAt(endline, endpos[2], '}\langen{}')
+	let endline = InsertAt(endline, endpos[2], '}\lang' . g:spellst[(g:langcnt+1)%len(g:spellst)] . '{}')
 	call setline(endpos[1], endline)
 	let startline = getline(startpos[1])
-	let startline = InsertAt(startline, startpos[2]-1, '\langde{')
+	let startline = InsertAt(startline, startpos[2]-1, '\lang' . g:spellst[g:langcnt] . '{')
 	call setline(startpos[1], startline)
 	" Set the cursor position
 	if endpos[2] == 2147483647
