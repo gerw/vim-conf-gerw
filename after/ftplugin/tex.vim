@@ -24,6 +24,7 @@ call IMAP ('\left[]', '\left[ <++> \right]<++>', "tex")
 
 " Set up IMAP commands for \Bigh() and co.
 for type in ['big', 'Big', 'bigg', 'Bigg', 'var', 'normal']
+	let type = '\' . type
 	for bracket in ['()', '[]', '\{\}']
 		call IMAP (type . 'h' . bracket, type . 'h' . bracket . '{<++>}<++>', "tex")
 	endfor
