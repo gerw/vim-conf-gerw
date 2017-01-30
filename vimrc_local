@@ -12,6 +12,7 @@ set hlsearch
 set hidden                      " allow editing multiple unsaved buffers
 set ignorecase                  " use case-insensitive matching
 set incsearch                   " show matches as soon as possible
+set lazyredraw                  " Do not redraw screen while executing macros
 set noautowrite                 " don't automatically write on :next, etc
 set nocompatible                " vim defaults, not vi!
 set nrformats-=octal            " Don't consider numbers starting with 0 as octal when incrementing/decrementing via c-a, c-x
