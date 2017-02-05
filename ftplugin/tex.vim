@@ -244,9 +244,6 @@ call IMAP("SS2", "\\subsubsection{<+name+>}\<CR>%%fakeparagraph: Intro\<CR>\\lab
 call IMAP("SPG", "\\paragraph{<+name+>}\<CR><++>", "tex")
 call IMAP("SSP", "\\subparagraph{<+name+>}\<CR><++>", "tex")
 
-" Subequations environment
-call IMAP("ESE", "\<C-r>=Tex_PutEnvironment('subequations')\<CR>", 'tex')
-
 " Block and frame environment in beamer
 let g:Tex_Env_block = "\\begin{block}{<++>}\<CR><++>\<CR>\\end{block}\<CR><++>"
 let g:Tex_Env_frame = "\\begin{frame}\<CR>\\frametitle{<++>}\<CR><++>\<CR>\\end{frame}\<CR><++>"
