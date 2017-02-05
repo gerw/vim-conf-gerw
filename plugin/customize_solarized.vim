@@ -65,9 +65,8 @@ function! CustomizeSolarized()
 		call SetHighlight("SpecialKey", s:blue )
 
 		let s:folded = GetHighlight("Folded")
-		let s:folded = substitute(s:folded, "underline", "", "g" )
+		let s:folded = substitute(s:folded, 'bold,\?\|underline,\?', "", "g" )
 		let s:folded = substitute(s:folded, "\\a*= ", " ", "g" )
-		let g:folded = s:folded
 		call SetHighlight("Folded", s:folded)
 		" call SetHighlight("Folded", s:folded)
 		" call SetHighlight("Folded", s:blue . " " . s:ubold )
