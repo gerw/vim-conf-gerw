@@ -3,7 +3,12 @@ call IUNMAP('FEM', 'tex')
 
 " matchit matcht auch \left und \right
 if exists("loaded_matchit")
-  let b:match_words .= ',\\left\>:\\right\>'
+	let mypattern = '\\left\>:\\right\>'
+	if exists("b:match_words")
+		let b:match_words .= ',' . mypattern
+	else
+		let b:match_words = mypattern
+	endif
 endif " exists("loaded_matchit")
 
 
