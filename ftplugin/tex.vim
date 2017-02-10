@@ -133,39 +133,36 @@ endfunction
 function! NumbersOnLetters()
 	" Prevent double-remapping
 	call RestoreUserMaps("Letters")
-	call RestoreUserMaps("c_d")
-	call SaveUserMaps("i", "", "aoeiuhdrnslAOEIUHDRNS", "Letters")
-	call SaveUserMaps("i", "", "<c-d>", "c_d")
-	inoremap a 1
-	inoremap o 2
-	inoremap e 3
-	inoremap i 4
-	inoremap u 5
-	inoremap h 6
-	inoremap d 7
-	inoremap r 8
-	inoremap n 9
-	inoremap s 0
-	inoremap A a
-	inoremap O o
-	inoremap E e
-	inoremap I i
-	inoremap U u
-	inoremap H h
-	inoremap D d
-	inoremap R r
-	inoremap N n
-	inoremap S s
-	inoremap <esc> <c-r>=LettersOnLetters()<cr><esc>
-	imap <c-d> <c-r>=LettersOnLetters()<cr><C-\><C-N>:call JumpAndComplete()<CR>
+	call SaveUserMaps("bi", "", "aoeiuhdrnslAOEIUHDRNS", "Letters")
+	inoremap <buffer> a 1
+	inoremap <buffer> o 2
+	inoremap <buffer> e 3
+	inoremap <buffer> i 4
+	inoremap <buffer> u 5
+	inoremap <buffer> h 6
+	inoremap <buffer> d 7
+	inoremap <buffer> r 8
+	inoremap <buffer> n 9
+	inoremap <buffer> s 0
+	inoremap <buffer> A a
+	inoremap <buffer> O o
+	inoremap <buffer> E e
+	inoremap <buffer> I i
+	inoremap <buffer> U u
+	inoremap <buffer> H h
+	inoremap <buffer> D d
+	inoremap <buffer> R r
+	inoremap <buffer> N n
+	inoremap <buffer> S s
+	inoremap <buffer> <esc> <c-r>=LettersOnLetters()<cr><esc>
+	imap <buffer> <c-d> <c-r>=LettersOnLetters()<cr><C-\><C-N>:call JumpAndComplete()<CR>
 	return ''
 endfunction
 
 function! LettersOnLetters()
 	call RestoreUserMaps("Letters")
-	call RestoreUserMaps("c_d")
-	" iunmap <esc>
-	" imap <c-d> <Plug>IMAP_JumpForward
+	iunmap <buffer> <esc>
+	iunmap <buffer> <c-d>
 	return ''
 endfunction
 
