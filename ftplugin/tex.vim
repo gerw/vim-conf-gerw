@@ -122,12 +122,6 @@ endfunction
 
 
 
-function! JumpAndComplete()
-	call IMAP_Jumpfunc('', 0)
-	call feedkeys("\<C-G>u",'n')
-	call feedkeys("\<Plug>Tex_Completion",'m')
-endfunction
-
 " Vervollständigung bei Gleichungsnummerneingabe:
 " Zahlen ummappen:
 function! NumbersOnLetters()
@@ -155,7 +149,7 @@ function! NumbersOnLetters()
 	inoremap <buffer> N n
 	inoremap <buffer> S s
 	inoremap <buffer> <esc> <c-r>=LettersOnLetters()<cr><esc>
-	imap <buffer> <c-d> <c-r>=LettersOnLetters()<cr><C-\><C-N>:call JumpAndComplete()<CR>
+	imap <buffer> <c-d> <c-r>=LettersOnLetters()<cr><Plug>IMAP_JumpForward<C-G>u<f9>
 	return ''
 endfunction
 
