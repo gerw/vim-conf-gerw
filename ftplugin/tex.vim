@@ -224,6 +224,8 @@ let g:Tex_Env_algorithm = "\\begin{algorithm}[<+title+>]\\hfill\\par\<CR>\\label
 let g:Tex_EnvEndWithCR = 1
 " Created labels before or after content?
 let g:Tex_LabelAfterContent = 0
+" Inserted items should include CR
+let g:Tex_ItemsWithCR = 1
 
 " Customized Section maps
 let g:Tex_SectionMaps = 0
