@@ -28,3 +28,6 @@
 [submodule "bundle/vim-airline-themes"]
 	path = bundle/vim-airline-themes
 	url = git@github.com:vim-airline/vim-airline-themes.git
+[submodule "bundle/securemodelines"]
+	path = bundle/securemodelines
+	url = git@github.com:ciaranm/securemodelines.git
