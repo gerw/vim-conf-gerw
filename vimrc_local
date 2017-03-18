@@ -462,8 +462,9 @@ else
 endif
 
 
-" Always search case-sensitive when using g*
+" Always search case-sensitive when using g* {{{
 nnoremap <silent> g* /\<<C-R>=expand('<cword>')<CR>\>\C<CR>
+" }}}
 
 
 
@@ -483,3 +484,51 @@ function! HowLong( command, numberOfTimes )
 endfunction
 
 set guifont=Hack\ 10
+
+" Airline configuration {{{
+" Use powerline fonts for fancy arrows.
+let g:airline_powerline_fonts = 1
+
+" Enable only specific modules.
+let g:airline_extensions = ['tabline', 'quickfix']
+" We may consider 'branch', if fugitive is in place.
+
+" Configure tabline expansion
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+
+" General configuration
+let g:airline_solarized_normal_green = 1
+let g:airline_solarized_dark_inactive_border = 1
+let g:airline_mode_map = {
+			\ '__' : '-',
+			\ 'n'  : 'n',
+			\ 'i'  : 'i',
+			\ 'R'  : 'R',
+			\ 'c'  : 'c',
+			\ 'v'  : 'v',
+			\ 'V'  : 'V',
+			\ '' : 'CV',
+			\ 's'  : 's',
+			\ 'S'  : 'S',
+			\ '' : 'CS',
+			\ }
+
+let g:airline_section_z = airline#section#create(['%3p%% ', 'linenr', ':%3c-%-3v'])
+
+" Patch the colorscheme
+let g:airline_theme_patch_func = 'AirlineThemePatch'
+function! AirlineThemePatch(palette)
+	if g:airline_theme == 'solarized'
+		" If we are modified, display the filename in red
+		let l:gui_red = a:palette.replace.airline_a[1]
+		let l:text_red = a:palette.replace.airline_a[3]
+		for l:mode in ['normal', 'insert', 'visual', 'replace']
+			let a:palette[l:mode . '_modified'].airline_c[0] = l:gui_red
+			let a:palette[l:mode . '_modified'].airline_c[2] = l:text_red
+		endfor
+		" Show modified, active tabs in red
+		let a:palette.tabline.airline_tabmod = a:palette.replace.airline_a
+	endif
+endfunction
+" }}}
