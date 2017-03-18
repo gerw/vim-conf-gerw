@@ -481,3 +481,5 @@ function! HowLong( command, numberOfTimes )
 	let &more = more
 	return result
 endfunction
+
+set guifont=Hack\ 10
