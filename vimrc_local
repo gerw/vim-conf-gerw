@@ -490,7 +490,7 @@ set guifont=Hack\ 10
 let g:airline_powerline_fonts = 1
 
 " Enable only specific modules.
-let g:airline_extensions = ['tabline', 'quickfix']
+let g:airline_extensions = ['tabline', 'quickfix', 'branch']
 " We may consider 'branch', if fugitive is in place.
 
 " Configure tabline expansion

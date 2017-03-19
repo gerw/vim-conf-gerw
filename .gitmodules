@@ -31,3 +31,6 @@
 [submodule "bundle/securemodelines"]
 	path = bundle/securemodelines
 	url = git@github.com:ciaranm/securemodelines.git
+[submodule "bundle/vim-fugitive"]
+	path = bundle/vim-fugitive
+	url = git@github.com:tpope/vim-fugitive.git

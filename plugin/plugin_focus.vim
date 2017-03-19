@@ -7,9 +7,9 @@ func! Focus(command, vim_command, key)
   let neww = winnr()
   if oldw == neww
     if hostname()=="cantor" || hostname()=="kunigunde"
-      silent exe '!i3-msg -q focus ' . a:command
+      silent noautocmd exe '!i3-msg -q focus ' . a:command
     else
-      silent exe '!xdotool key --delay 0 ' . a:key
+      silent noautocmd exe '!xdotool key --delay 0 ' . a:key
     end
 
     if !has("gui_running")
