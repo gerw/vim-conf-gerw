@@ -238,30 +238,32 @@ endfunction
 
 
 
-"""""""""""""""""""""""
-" Spellchecker
-"""""""""""""""""""""""
+" Toogle spellchecking (F2) and select language (F3) {{{
 
-let spellst=["de", "en"]
+" List of used languages
+let spellst=["en", "de"]
 
+" Select the next language
 function Sel_lang()
-        let g:langcnt = (g:langcnt+1) % len (g:spellst)
-        let lang = g:spellst[g:langcnt]
-        echo "spelllang = " . lang
-        exe "set spelllang=".lang
-endfunction 
+	let g:langcnt = (g:langcnt+1) % len(g:spellst)
+	let lang = g:spellst[g:langcnt]
+	echo "spelllang = " . lang
+	exe "set spelllang=".lang
+	let g:airline_symbols.spell = 'SPELL: ' . lang
+endfunction
 
+" Initialize
 let langcnt=0
-set spelllang="en"
+exe "set spelllang=" . spellst[0]
+let g:airline_symbols = {'spell' : 'SPELL: ' . &spelllang}
 
+" Mappings
 " F2 - Spellcheck an/aus
-map <silent> <F2> :set spell!<CR>:echo "Spell check: " . strpart("offon", 3 * &spell, 3)<cr>
+map <silent> <F2> :set spell!<CR>
 " F3 - Sprache Ändern
 map <silent> <F3> :call Sel_lang() <CR>
 
-"""""""""""""""""""""""
-" END Spellchecker
-"""""""""""""""""""""""
+" }}}
 
 
 " Speichern mit <c-s>
