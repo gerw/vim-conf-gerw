@@ -3,6 +3,10 @@
 " Set nocompatible option, otherwise pathogen does not work.
 set nocompatible
 
+" To disable a plugin, add it's bundle name to the following list
+" let g:pathogen_disabled = ['vim-fugitive']
+" let g:pathogen_disabled = ['vim-airline']
+
 " Call Pathogen
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
