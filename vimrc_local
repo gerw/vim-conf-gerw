@@ -381,15 +381,11 @@ endfunction
 " Mapping: Insert the language commands and goto insert mode.
 vmap <silent> gl <esc>:call InsertLang()<CR>i
 
-
-" Write with sudo (if you forgot to start vim as root)
+" ':Sudow': Write with sudo (if you forgot to start vim as root) {{{
 " % is replaced by current file name
 command Sudow w !sudo tee % > /dev/null
-
-
-
-
-" Delete buffer while keeping window layout (don't close buffer's windows).
+"}}}
+" ':Bdelete': Delete buffer while keeping window layout (don't close buffer's windows). {{{
 " Version 2008-11-18 from http://vim.wikia.com/wiki/VimTip165
 if v:version < 700 || exists('loaded_bclose') || &cp
   finish
@@ -460,10 +456,8 @@ else
 		execute wcurrent.'wincmd w'
 	endfunction
 	command! -bang -complete=buffer -nargs=? Bdelete call s:Bdelete('<bang>', '<args>')
-	" nnoremap <silent> <Leader>bd :Bdelete<CR>
 endif
-
-
+"}}}
 " Always search case-sensitive when using g* {{{
 nnoremap <silent> g* /\<<C-R>=expand('<cword>')<CR>\>\C<CR>
 " }}}
@@ -534,3 +528,5 @@ function! AirlineThemePatch(palette)
 	endif
 endfunction
 " }}}
+" Modeline {{{
+" vim: fdm=marker }}}
