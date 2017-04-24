@@ -4,8 +4,10 @@
 set nocompatible
 
 " To disable a plugin, add it's bundle name to the following list
-" let g:pathogen_disabled = ['vim-fugitive']
-" let g:pathogen_disabled = ['vim-airline']
+" let g:pathogen_disabled = []
+" call add( g:pathogen_disabled, 'vim-airline')
+" call add( g:pathogen_disabled, 'vim-airline-themes')
+" call add( g:pathogen_disabled, 'vim-fugitive')
 
 " Call Pathogen
 call pathogen#runtime_append_all_bundles()
