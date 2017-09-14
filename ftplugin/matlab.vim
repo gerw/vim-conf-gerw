@@ -38,7 +38,7 @@ nnoremap \g :call SelectMatlab()<CR>
 
 function! FindMatlab()
 	" Find window number of first matlab
-	let xdooutput = system("xdotool search --name XMATLAB | head -n 1")
+	let xdooutput = system("xdotool search --name XMATLAB 2>/dev/null | head -n 1")
 	" Strip some whitespace
 	let b:number = substitute(xdooutput, '^\_s*\(.\{-}\)\_s*$', '\1', '')
 endfunction
