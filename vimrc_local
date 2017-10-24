@@ -359,27 +359,72 @@ function InsertAt(string, pos, insertstring)
 	endif
 endfunction
 
-function InsertLang()
+function InsertLang(vmode) range
 	" Get the positions from the last (or current) selection
 	let startpos = getpos("'<")
 	let endpos = getpos("'>")
-	" Modify the lines
-	let endline = getline(endpos[1])
-	let endline = InsertAt(endline, endpos[2], '}\lang' . g:spellst[(g:langcnt+1)%len(g:spellst)] . '{}')
-	call setline(endpos[1], endline)
-	let startline = getline(startpos[1])
-	let startline = InsertAt(startline, startpos[2]-1, '\lang' . g:spellst[g:langcnt] . '{')
-	call setline(startpos[1], startline)
-	" Set the cursor position
-	if endpos[2] == 2147483647
-		call setpos('.', [endpos[0], endpos[1], endpos[2], 0])
+
+	if a:vmode ==# "v" || a:vmode ==# "V"
+		if startpos[1] == endpos[1]
+			" Case 1: On a single line
+			if a:vmode ==# "V"
+				" Case 1a: Entire line
+				let line = getline(startpos[1])
+				let line = substitute(line, '^\(\s*\)', '\1\\lang' . g:spellst[(g:langcnt+1)%len(g:spellst)] . '{', '') . '}%'
+				call setline(startpos[1], line)
+				call append(startpos[1], '\lang' . g:spellst[g:langcnt] . '{}')
+
+				" Indent the line
+				call setpos('.', [endpos[0], startpos[1]+1, 0, 0])
+				normal! ==
+
+				call setpos('.', [startpos[0], startpos[1]+1, 9 + indent(startpos[1]+1), 0])
+			else
+				" Case 1b: Part of the line
+				let line = getline(startpos[1])
+				let line = InsertAt(line, endpos[2], '}\lang' . g:spellst[g:langcnt] . '{}')
+				let line = InsertAt(line, startpos[2]-1, '\lang' . g:spellst[(g:langcnt+1)%len(g:spellst)] . '{')
+				call setline(startpos[1], line)
+				call setpos('.', [startpos[0], startpos[1], endpos[2]+18, 0])
+			end
+			startinsert
+		else
+			" Case 2: On multiple lines
+
+			" Modify endline
+			let endline = getline(endpos[1]) . '%'
+			call setline(endpos[1], endline)
+
+			let nextline = '}\lang' . g:spellst[g:langcnt] . '{%'
+			call append(endpos[1], nextline)
+			call append(endpos[1]+1, '}')
+
+			" Modify startline
+			let startline = '\lang' . g:spellst[(g:langcnt+1)%len(g:spellst)] . '{%'
+			call append(startpos[1]-1, startline)
+
+			" Indent the lines
+			call setpos('.', [endpos[0], endpos[1]+2, 0, 0])
+			normal! =aB
+			call setpos('.', [endpos[0], endpos[1]+3, 0, 0])
+			normal! ==
+
+			" Set cursor position
+			call setpos('.', [endpos[0], endpos[1]+2, 0, 0])
+
+			" Simulate 'o', see
+			" https://vi.stackexchange.com/questions/4407/normal-does-not-seem-to-allow-automatic-indentation
+			execute "normal o\<Space>\<BS>\<Esc>"
+			startinsert!
+
+		endif
 	else
-		call setpos('.', [endpos[0], endpos[1], endpos[2]+18, 0])
+		" Block mode. Todo.
 	endif
 endfunction
 
 " Mapping: Insert the language commands and goto insert mode.
-vmap <silent> gl <esc>:call InsertLang()<CR>i
+vmap <silent> gl :call InsertLang(visualmode())<CR>
 
 " ':Sudow': Write with sudo (if you forgot to start vim as root) {{{
 " % is replaced by current file name
