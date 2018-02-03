@@ -13,21 +13,11 @@ set iskeyword-=_
 let g:Tex_HotKeyMappings='align,align*, bmatrix'
 
 
-
-" let g:Tex_TEXINPUTS = '~/work/Resources/**,~/work/Talks/**'
-" let g:Tex_BIBINPUTS = '~/work/Resources/Bibliography,~/work/Projects/Plasticity/Resources'
-
 "" DEBUG variable:
 " let g:SyntaxFolds_Debug = 1
 " let g:Tex_Debug = 1
 " let g:Imap_Debug = 1
 " let g:Tex_DebugLog = "vim-latex-suite.log"
-
-" Set $BIBINPUTS
-let g:Tex_BIBINPUTS = $HOME."/work/Resources/Bibliography/,".$HOME."/work/Projects/Plasticity/Resources/"
-
-" Bildverzeichnis
-"let g:Tex_ImageDir = ''
 
 " Which command should be used for completed references?
 let g:Tex_RefCompletionCommand = "cref"
@@ -47,11 +37,13 @@ let g:Tex_FoldedMisc = 'preamble,<<<'
 " Fold all sections.
 let g:Tex_FoldedSections = 'part|addpart,chapter|addchap,section|addsec,subsection,subsubsection,paragraph,subparagraph'
 
+" No concealing in TeX
+let g:tex_conceal = ""
 
 " Which warnings should be ignored? None.
 let g:Tex_IgnoreLevel = 0
 
-
+" Smart spaces in command mode {{{
 :cnoremap <space> <C-R>=Replace_space()<CR>
 "" Replace spaces in search to map also line breaks
 function! Replace_space()
@@ -79,7 +71,8 @@ function! Replace_backspace()
 		return ""
 	endif
 endfunction
-
+"}}}
+" Helper for beamer talks {{{
 noremap <silent> <c-n> :call ToggleCurrent()<CR>
 "" Toogle [label=current] in beamer.
 function! ToggleCurrent()
@@ -96,19 +89,8 @@ endfunction
 "" Move to next / previous frame
 noremap <silent> <c-j> :call search("^\\s*\\\\begin{frame}")<cr>
 noremap <silent> <c-k> k:call search("^\\s*\\\\begin{frame}",'cb')<cr>
-
-" :cnoremap <CR> <C-\>eReplace_space()<CR><CR>
-" "" Replace Enter in search to modify search
-" function Replace_space()
-"   let cmdtype = getcmdtype()
-"   let cmd = getcmdline()
-"   if (cmdtype == '/' || cmdtype == '?')
-"     let cmd = substitute(cmd," ","\\\\_s*","g")
-"   endif
-"   return cmd
-" endfunction
-
-
+"}}}
+" Smart tab for file completion {{{
 :inoremap <expr> <tab> SmartTab()
 "" Replace tab => search for files, if line start with \input{
 function! SmartTab()
@@ -119,9 +101,8 @@ function! SmartTab()
 		return "\<tab>"
 	endif
 endfunction
-
-
-
+"}}}
+" Numbers on letters for equations {{{
 " Vervollständigung bei Gleichungsnummerneingabe:
 " Zahlen ummappen:
 function! NumbersOnLetters()
@@ -165,16 +146,8 @@ endfunction
 " call IMAP ('\{\}', '\{<++>\}<++>', "tex")
 " call IMAP ('\{}', '\{<++>\}<++>', "tex")
 
-
-
-
-
-
-
-
-
-
-
+"}}}
+" Adjust path, Tex_TEXINPUTS and Tex_BIBINPUTS {{{
 " Pfad für Übungen setzen.
 if ( getcwd() =~ "WS2009_Chemnitz_Grundlagen_der_Optimierung/Übungen" )
 	set path+=$HOME/work/Teaching/WS2009_Chemnitz_Grundlagen_der_Optimierung/Übungen/Aufgaben
@@ -200,8 +173,10 @@ set path+=$HOME/work/Resources/LaTeX/
 
 let g:Tex_TEXINPUTS = $HOME . '/work/Resources/LaTeX/,' . $HOME . '/work/Talks/Archive/**/*'
 
-
-""""" Macros for Creating of Environments:
+" Set $BIBINPUTS
+let g:Tex_BIBINPUTS = $HOME."/work/Resources/Bibliography/,".$HOME."/work/Projects/Plasticity/Resources/"
+"}}}
+" Customization of Environments {{{
 
 " Customization of labels of environments
 let g:Tex_EnvLabelprefix_assumption = "asm:"
@@ -226,8 +201,8 @@ let g:Tex_EnvEndWithCR = 1
 let g:Tex_LabelAfterContent = 0
 " Inserted items should include CR
 let g:Tex_ItemsWithCR = 1
-
-" Customized Section maps
+" }}}
+" Customized Section maps {{{
 let g:Tex_SectionMaps = 0
 call IMAP("SPA", "\\part{<+name+>}\<CR>%%fakechapter: Intro\<CR>\\label{part:<+label+>}\<CR><++>", "tex")
 call IMAP("SCH", "\\chapter{<+name+>}\<CR>%%fakesection: Intro\<CR>\\label{chap:<+label+>}\<CR><++>", "tex")
@@ -236,20 +211,13 @@ call IMAP("SSS", "\\subsection{<+name+>}\<CR>%%fakesubsubsection: Intro\<CR>\\la
 call IMAP("SS2", "\\subsubsection{<+name+>}\<CR>%%fakeparagraph: Intro\<CR>\\label{sssec:<+label+>}\<CR><++>", "tex")
 call IMAP("SPG", "\\paragraph{<+name+>}\<CR><++>", "tex")
 call IMAP("SSP", "\\subparagraph{<+name+>}\<CR><++>", "tex")
-
-" Block and frame environment in beamer
+"}}}
+" Block and frame environment in beamer {{{
 let g:Tex_Env_block = "\\begin{block}{<++>}\<CR><++>\<CR>\\end{block}\<CR><++>"
 let g:Tex_Env_frame = "\\begin{frame}\<CR>\\frametitle{<++>}\<CR><++>\<CR>\\end{frame}\<CR><++>"
 call IMAP("EBL", g:Tex_Env_block, "tex")
 " call IMAP("EFR", g:Tex_Env_frame, "tex") " in after/ftplugin/tex.vim
-
-" No concealing in TeX
-let g:tex_conceal = ""
-
-" Doesn't work with numbers:
-" noremap <silent> <c-9> i\left<esc>
-" noremap <silent> <c-0> i\right<esc>
-
+"}}}
 
 " Forward Search
 let g:Tex_DefaultTargetFormat = 'pdf'
@@ -259,7 +227,7 @@ let g:Tex_ViewRule_pdf = 'synctex_wrapper'
 nnoremap <c-cr> zvo<c-r>="%".substitute(getline(line(".")-1),".","=","g")<CR><BS><ESC>^
 
 
-
+" Create word objects {{{
 
 " Inline-math text objects (similar to "aw" [a word] and "iw" [inner word])
 " a$ selects / use including limiting $
@@ -308,8 +276,8 @@ function! LatexEnvironmentTextObject(inner)
 endfunction
 
 
-
-" Some useful macros
+" }}}
+" Macros for deletion of \added, \deleted and \replaced {{{
 " -----------------------------------
 " \added[...]{text} -> text
 let @b='dt{ma%x`ax'
@@ -317,7 +285,7 @@ let @b='dt{ma%x`ax'
 let @e='dt{daB'
 " \replaced[...]{text1}{text2} -> text1
 let @s='dt{ma%xldaB`ax'
-
+" }}}
 
 " Use other placeholders, that does not collide with LaTeXs beamer
 let g:Imap_PlaceHolderStart = '<<+'
@@ -326,7 +294,8 @@ let g:Imap_PlaceHolderEnd = '+>>'
 " <S-ESC> in insert mode: insert a placeholder and leave insert mode
 imap <buffer><silent> <S-ESC> <<++>><ESC>
 
-
 " Spelling of difficult names
 call IMAP("Frechet", "Fréchet", "tex")
 call IMAP("Gateaux", "Gâteaux", "tex")
+
+" vim:fdm=marker
