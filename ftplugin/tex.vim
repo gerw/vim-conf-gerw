@@ -298,4 +298,145 @@ imap <buffer><silent> <S-ESC> <<++>><ESC>
 call IMAP("Frechet", "Fréchet", "tex")
 call IMAP("Gateaux", "Gâteaux", "tex")
 
+" Increase and decrease size of delimiters {{{
+nnoremap \+ :call DelimDeIncrease(1)
+nnoremap + :call DelimDeIncrease(1)
+nnoremap \- :call DelimDeIncrease(-1)
+nnoremap - :call DelimDeIncrease(-1)
+nnoremap \* :call DelimDeIncrease(2)
+
+let b:delims = 'abs\|norm\|paren\|brace\|brack\|innerp\|dual\|set'
+let b:sizes = ['', 'big', 'Big', 'bigg', 'Bigg']
+
+function! DelimDeIncrease( direction )
+	if DelimFind() > 0
+		" Move to end of delimiter
+		call search(b:delim_pattern, 'ceW')
+
+		" Get line after cursor
+		let line = strpart(getline("."), col("."))
+
+		" Get current size
+		let cur_size = matchstr(line, '^\%(\*\|\[\\\zs\w*\ze\]\)')
+
+		if cur_size == "*"
+			if a:direction == 1
+				" Remove *
+				normal! lx
+				let offset = -1
+			elseif a:direction == -1
+				" Replace * by [\biggestsize]
+				exec 'normal! lcl[\' . b:sizes[-1] . ']'
+				let offset = len(b:sizes[-1]) + 2
+			else
+				let offset = 0
+			endif
+		else
+			" What we need to issue a replace
+			if match(line, '^\%({\|\s\|$\)') >= 0
+				let repl = 'a'
+				let offset = 2
+			else
+				let repl = 'lcf]'
+				let offset = 0
+			end
+			let cur_size_idx = index(b:sizes, cur_size)
+			if a:direction == 1
+				" Replace [size] by [next_size]
+				let bigger_size = cur_size_idx + 1
+				if bigger_size < len(b:sizes)
+					let bigger_size = b:sizes[bigger_size]
+					exec 'normal! ' . repl . '[\' . bigger_size . ']'
+					let offset += len(bigger_size) - len(cur_size)
+					if cur_size == ""
+						let offset += 1
+					endif
+				else
+					let offset = 0
+				end
+			elseif a:direction == -1
+				" Replace [size] by [next_size]
+				let smaller_size = cur_size_idx - 1
+				if smaller_size >= 0
+					let smaller_size = b:sizes[smaller_size]
+					if smaller_size == ""
+						exec 'normal! ' . repl . ''
+						let offset += -3 - len(cur_size)
+					else
+						exec 'normal! ' . repl . '[\' . smaller_size . ']'
+						let offset += len(smaller_size) - len(cur_size)
+					end
+				else
+					let offset = 0
+				end
+			else
+				" Replace [size] by *
+				exec 'normal! ' . repl . '*'
+				let offset += -2 - len(cur_size)
+				if cur_size == ""
+					let offset += 1
+				endif
+			endif
+		endif
+		" Move to end of delimiter
+		call search(b:delim_pattern, 'cbeW')
+		if b:curpos[1] == line(".") && b:curpos[2] > col(".")
+			" In this case, we have to correct the cursor position
+			call cursor(b:curpos[1], max([col("."), b:curpos[2] + offset]))
+		else
+			call setpos('.', b:curpos)
+		end
+	endif
+endfunction
+
+function! DelimFind()
+	" This function tries to find the delimiter we want to increase
+
+	" Save cursor position
+	let b:curpos = getcurpos()
+
+	" Assemble delimiter pattern
+	let b:delim_pattern = '\\\%(' . b:delims . '\)\>'
+	let b:delim_pattern_w_size = b:delim_pattern . '\%(\*\|\[\\[Bb]ig*\]\)\?'
+
+	" Check whether pattern matches under the cursor!
+	" We search forward, then backward and check whether cursor is in between
+	call search( b:delim_pattern_w_size, 'ecW' )
+	call search( b:delim_pattern_w_size, 'bcW' )
+	let pos = getcurpos()
+	if pos[1] == b:curpos[1] && pos[2] <= b:curpos[2]
+		return line('.')
+	else
+		call setpos('.', b:curpos)
+	end
+
+	" Searches backwards to the next delimiter command
+	if getline('.')[col('.')-1] != '{'
+		normal! [{
+		if getline('.')[col('.')-1] != '{'
+			call setpos('.', b:curpos)
+			return 0
+		endif
+	end
+	" Previous non-whitespace character
+	call search('\S', 'bW')
+
+	while getline('.')[col('.')-1] == '}'
+		normal! [{
+		call search('\S', 'bW')
+	endwhile
+
+	" Does the delim pattern match?
+	let line = strpart(getline("."), 0, col("."))
+
+	if match(line, b:delim_pattern_w_size . '$') != -1
+		return search(b:delim_pattern, 'bcW')
+	else
+		call setpos('.', b:curpos)
+		return 0
+	end
+endfunction
+
+" }}}
+
 " vim:fdm=marker
