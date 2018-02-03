@@ -1,3 +1,6 @@
+" Set commentstring for adding markers
+setlocal commentstring=\ //%s
+
 " Helper routine to convert bibtex-style to php-style
 function! BibtexToPhp() range
 	let startline = getpos("'<")[1]
