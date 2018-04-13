@@ -28,7 +28,7 @@ let g:Tex_Menus = 0
 let g:Tex_PackagesMenu = 0
 
 " Customize template directory
-let g:Tex_CustomTemplateDirectory = '~/work/Resources/LaTeX/Templates'
+let g:Tex_CustomTemplateDirectory = '~/work/resources/latex/templates'
 
 " Do not fold any Environments.
 let g:Tex_FoldedEnvironments = ''
@@ -149,32 +149,23 @@ endfunction
 "}}}
 " Adjust path, Tex_TEXINPUTS and Tex_BIBINPUTS {{{
 " Pfad für Übungen setzen.
-if ( getcwd() =~ "WS2009_Chemnitz_Grundlagen_der_Optimierung/Übungen" )
-	set path+=$HOME/work/Teaching/WS2009_Chemnitz_Grundlagen_der_Optimierung/Übungen/Aufgaben
-endif
-
 " Pfad für Übungen setzen.
-if ( getcwd() =~ "work/Teaching/" )
-	set path+=$HOME/work/Teaching/Exercises
-endif
-
-" Pfad für Plasticity setzen.
-if ( getcwd() =~ "Projects/Plasticity" )
-	set path+=$HOME/work/Projects/Plasticity/Resources
+if ( getcwd() =~ "work/teaching/" )
+	set path+=$HOME/work/teaching/exercises
 endif
 
 " Pfad für Talks setzen.
-if ( getcwd() =~ "work/Talks" )
-	set path+=$HOME/work/Talks/Archive
-endif
+" if ( getcwd() =~ "work/Talks" )
+" 	set path+=$HOME/work/Talks/Archive
+" endif
 
-set path+=$HOME/work/Resources/Bibliography
-set path+=$HOME/work/Resources/LaTeX/ 
+set path+=$HOME/work/resources/bibliography
+set path+=$HOME/work/resources/latex/
 
-let g:Tex_TEXINPUTS = $HOME . '/work/Resources/LaTeX/,' . $HOME . '/work/Talks/Archive/**/*'
+let g:Tex_TEXINPUTS = $HOME . '/work/resources/latex/,' . $HOME . '/work/talks/archive/**/*'
 
 " Set $BIBINPUTS
-let g:Tex_BIBINPUTS = $HOME."/work/Resources/Bibliography/,".$HOME."/work/Projects/Plasticity/Resources/"
+let g:Tex_BIBINPUTS = $HOME."/work/resources/bibliography/"
 "}}}
 " Customization of Environments {{{
 
