@@ -66,6 +66,12 @@ if !has('gui_running') && $TERM == "xterm"
 	autocmd VimLeave * !term-recolor-current.sh
 end
 
+
+" Enable filetype plugins
+" This should be done before enabling the syntax highlighting,
+" such that syntax customizations can be done in ftplugins/something.vim
+filetype plugin on
+
 " Enable syntax highlighting
 syntax enable
 
@@ -85,8 +91,6 @@ colorscheme solarized
 call togglebg#map("<F4>")
 
 
-
-filetype plugin on
 
 
 """""""""""""""""""""""""""
