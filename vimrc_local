@@ -528,7 +528,7 @@ function! HowLong( command, numberOfTimes )
 	return result
 endfunction
 
-set guifont=Hack\ 10
+set guifont=Hack\ 8.5
 
 " Airline configuration {{{
 " Use powerline fonts for fancy arrows.
