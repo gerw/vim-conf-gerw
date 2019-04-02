@@ -1,9 +1,6 @@
 [submodule "bundle/vim-tex-syntax"]
 	path = bundle/vim-tex-syntax
 	url = git@github.com:gerw/vim-tex-syntax.git
-[submodule "bundle/Align"]
-	path = bundle/Align
-	url = git://github.com/vim-scripts/Align.git
 [submodule "bundle/EnhCommentify"]
 	path = bundle/EnhCommentify
 	url = git@github.com:gerw/EnhCommentify.vim.git
@@ -34,3 +31,6 @@
 [submodule "bundle/vim-fugitive"]
 	path = bundle/vim-fugitive
 	url = git@github.com:tpope/vim-fugitive.git
+[submodule "bundle/vim-align"]
+	path = bundle/vim-align
+	url = git@github.com:ashfinal/vim-align.git
