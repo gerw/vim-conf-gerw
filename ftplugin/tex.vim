@@ -161,8 +161,9 @@ endif
 
 set path+=$HOME/work/resources/bibliography
 set path+=$HOME/work/resources/latex/
+set path+=$HOME/work/talks/beamertemplate
 
-let g:Tex_TEXINPUTS = $HOME . '/work/resources/latex/,' . $HOME . '/work/talks/archive/**/*'
+let g:Tex_TEXINPUTS = $HOME . '/work/resources/latex/,' . $HOME . '/work/talks/beamertemplate/'
 
 " Set $BIBINPUTS
 let g:Tex_BIBINPUTS = $HOME."/work/resources/bibliography/"
@@ -296,7 +297,7 @@ nnoremap \- :call DelimDeIncrease(-1)
 nnoremap - :call DelimDeIncrease(-1)
 nnoremap \* :call DelimDeIncrease(2)
 
-let b:delims = 'abs\|norm\|paren\|brace\|brack\|innerp\|dual\|set'
+let b:delims = 'abs\|norm\|parens\?\|braces\?\|bracks\?\|innerp\|dual\|set'
 let b:sizes = ['', 'big', 'Big', 'bigg', 'Bigg']
 
 function! DelimDeIncrease( direction )
