@@ -7,7 +7,7 @@ func! Focus(command, vim_command, key)
   endtry
   let neww = winnr()
   if oldw == neww
-    if hostname()=="euler" || hostname()=="kunigunde"
+    if hostname()=="euler" || hostname()=="kunigunde" || hostname()=="hilde"
       silent noautocmd exe '!i3-msg -q focus ' . a:command
     else
       silent noautocmd exe '!xdotool key --delay 0 ' . a:key
