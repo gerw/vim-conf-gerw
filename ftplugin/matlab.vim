@@ -11,6 +11,9 @@ let b:did_ftplugin = 1
 let s:save_cpo = &cpo
 set cpo-=C
 
+compiler mlint
+command -buffer Make silent make! | copen
+
 if exists("loaded_matchit")
   let s:conditionalEnd = '\(([^()]*\)\@!\<end\>\([^()]*)\)\@!'
   let b:match_words = '\<classdef\>\|\<methods\>\|\<events\>\|\<properties\>\|\<if\>\|\<while\>\|\<for\>\|\<switch\>\|\<try\>\|\<function\>:' . s:conditionalEnd
