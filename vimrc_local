@@ -12,6 +12,7 @@ set hlsearch
 set hidden                      " allow editing multiple unsaved buffers
 set ignorecase                  " use case-insensitive matching
 set incsearch                   " show matches as soon as possible
+set nojoinspaces                " Do not use two spaces after joining lines
 set lazyredraw                  " Do not redraw screen while executing macros
 set noautowrite                 " don't automatically write on :next, etc
 set nocompatible                " vim defaults, not vi!
@@ -536,7 +537,7 @@ function! HowLong( command, numberOfTimes )
 	return result
 endfunction
 
-set guifont=Hack\ 8.5
+set guifont=Hack\ 10
 
 " Airline configuration {{{
 " Use powerline fonts for fancy arrows.
