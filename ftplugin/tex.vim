@@ -297,7 +297,7 @@ nnoremap \- :call DelimDeIncrease(-1)
 nnoremap - :call DelimDeIncrease(-1)
 nnoremap \* :call DelimDeIncrease(2)
 
-let b:delims = 'abs\|norm\|parens\?\|braces\?\|bracks\?\|innerp\|dual\|set'
+let b:delims = 'abs\|norm\|parens\?\|braces\?\|bracks\?\|innerp\|dual\|set\|seq'
 let b:sizes = ['', 'big', 'Big', 'bigg', 'Bigg']
 
 function! DelimDeIncrease( direction )
