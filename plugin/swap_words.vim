@@ -52,7 +52,8 @@ function SwapWords( mode )
 		let startpos = getpos("'[")
 		let endpos = getpos("']")
 	else
-		exit
+		" Not implemented yet.
+		return
 	end
 
 	" Only work within one line
