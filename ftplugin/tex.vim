@@ -31,7 +31,7 @@ let g:Tex_PackagesMenu = 0
 let g:Tex_CustomTemplateDirectory = '~/work/resources/latex/templates'
 
 " Do not fold any Environments.
-let g:Tex_FoldedEnvironments = ''
+let g:Tex_FoldedEnvironments = 'frame'
 " Do not fold \item
 let g:Tex_FoldedMisc = 'preamble,<<<'
 " Fold all sections.
@@ -186,6 +186,8 @@ let g:Tex_EnvLabelprefix_subequations = "eq:"
 let g:Tex_Env_lemdef = "\\begin{lemdef}\<CR>\\label{lemdef:<+label+>}\<CR><+content+>\<CR>\\end{lemdef}\<CR><++>"
 let g:Tex_Env_example = "\\begin{example}\<CR>\\label{ex:<+label+>}\<CR><+content+>\<CR>\\end{example}\<CR><++>"
 let g:Tex_Env_algorithm = "\\begin{algorithm}[<+title+>]\\hfill\\par\<CR>\\label{alg:<+label+>}\<CR>\\begin{algorithmic}[1]\<CR>\\REQUIRE <+input+>\<CR>\\ENSURE <+output+>\<CR>\\end{algorithmic}\<CR>\\end{algorithm}\<CR><++>"
+let g:Tex_Env_column = "\\begin{column}{<+width+>}\<CR><++>\<CR>\\end{column}\<CR><++>"
+let g:Tex_Env_columns = "\\begin{columns}\<CR>" . g:Tex_Env_column[:-5] . g:Tex_Env_column . "\<CR>\\end{columns}\<CR><++>"
 
 " Created environments should end in <CR>+<++>
 let g:Tex_EnvEndWithCR = 1
