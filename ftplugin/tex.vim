@@ -215,6 +215,7 @@ call IMAP("EBL", g:Tex_Env_block, "tex")
 
 " Forward Search
 let g:Tex_DefaultTargetFormat = 'pdf'
+let g:Tex_MultipleCompileFormats = 'pdf'
 let g:Tex_ViewRule_pdf = 'synctex_wrapper'
 
 " Map Ctrl+Enter => Underline current line with %====
@@ -299,7 +300,7 @@ nnoremap \- :call DelimDeIncrease(-1)
 nnoremap - :call DelimDeIncrease(-1)
 nnoremap \* :call DelimDeIncrease(2)
 
-let b:delims = 'abs\|norm\|parens\?\|braces\?\|bracks\?\|innerp\|dual\|set\|seq'
+let b:delims = 'abs\|norm\|parens\?\|braces\?\|bracks\?\|innerp\%(rod\)\?\|dual\|set\|seq'
 let b:sizes = ['', 'big', 'Big', 'bigg', 'Bigg']
 
 function! DelimDeIncrease( direction )
