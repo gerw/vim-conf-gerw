@@ -1,5 +1,4 @@
 coercivity
-coercivity
 Sobolev
 Laplacian
 Clarkson
@@ -337,3 +336,12 @@ nonpositive
 halfspace
 halfspaces
 Lipschitzness
+cocoercive
+nonexpansive
+sublinear
+sublinearity
+predual
+proto
+Attouch's
+nonlinearities
+convexified
