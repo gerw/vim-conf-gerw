@@ -6,7 +6,7 @@
 	url = git@github.com:gerw/EnhCommentify.vim.git
 [submodule "bundle/matchit"]
 	path = bundle/matchit
-	url = git://github.com/vim-scripts/matchit.zip.git
+	url = git@github.com:chrisbra/matchit.git
 [submodule "bundle/vim-HiLinkTrace"]
 	path = bundle/vim-HiLinkTrace
 	url = git@github.com:gerw/vim-HiLinkTrace.git
