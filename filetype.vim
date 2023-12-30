@@ -17,6 +17,10 @@ augroup filetypedetect
 	"Set filetype for vimperator config
 	au! BufNewFile,BufRead {.,}vimperatorrc setfiletype vimperator
 
+	"Set filetype for LDraw files
+	au! BufNewFile,BufRead *.ldr setfiletype ldraw
+	au! BufNewFile,BufRead *.mpd setfiletype ldraw
+
 	" Set filetype for wikipages (on euler), when opened from vimperator
 	au! BufRead /tmp/vimperator-euler.mathematik.tu-chemnitz.de*.tmp setfiletype wikipedia
 
