@@ -60,6 +60,11 @@ if !has('gui_running') && $TERM == "xterm"
 	" Tell Vim that xterm understands (at least) 16 colors
 	set t_Co=16
 
+	" Set 'correct' cursor shapes
+	let &t_SI = "\<Esc>[6 q"
+	let &t_SR = "\<Esc>[4 q"
+	let &t_EI = "\<Esc>[2 q"
+
 	" Load correct Xresources
 	silent !term-recolor.sh < ~/dotfiles/solarized_xresources/Xresources.original
 
