@@ -37,6 +37,9 @@ let g:Tex_FoldedMisc = 'preamble,<<<'
 " Fold all sections.
 let g:Tex_FoldedSections = 'part|addpart,chapter|addchap,section|addsec,subsection,subsubsection,paragraph,subparagraph'
 
+" Customize indentation
+let g:tex_itemize_env = 'itemize\|description\|[cs]\?enumerate\|thebibliography'
+
 " No concealing in TeX
 let g:tex_conceal = ""
 
