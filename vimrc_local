@@ -75,6 +75,7 @@ filetype plugin on
 
 " Enable syntax highlighting
 syntax enable
+syntax sync minlines=10000
 
 " Set default background automatically.
 let g:background = system('get_current_colorscheme.sh')
