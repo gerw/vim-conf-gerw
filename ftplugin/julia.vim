@@ -6,8 +6,8 @@ nnoremap \f :call FindJulia()<CR>
 nnoremap \g :call SelectJulia()<CR>
 
 function! FindJulia()
-	" Find window number of first julia
-	let xdooutput = system("xdotool search --name XJULIA 2>/dev/null | head -n 1")
+	" Find window number of first julia which is currently visible
+	let xdooutput = system("xdotool search --onlyvisible --name XJULIA 2>/dev/null | head -n 1")
 	" Strip some whitespace
 	let b:number = substitute(xdooutput, '^\_s*\(.\{-}\)\_s*$', '\1', '')
 endfunction
