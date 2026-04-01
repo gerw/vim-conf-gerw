@@ -43,14 +43,21 @@ function GetStartString( string, length )
 	end
 endfunction
 
+" Helper Function:
+" Adapts the end position if there is a multibyte character under the cursor
+function AdaptEndPos( pos )
+	let length_of_character = strlen(strcharpart(strpart(getline(a:pos[1]), a:pos[2] - 1), 0, 1))
+	return [a:pos[0], a:pos[1], a:pos[2] + length_of_character - 1, a:pos[3]]
+endfunction
+
 " The main function.
 function SwapWords( mode )
 	if a:mode == "visual"
 		let startpos = getpos("'<")
-		let endpos = getpos("'>")
+		let endpos = AdaptEndPos(getpos("'>"))
 	elseif a:mode == "char"
 		let startpos = getpos("'[")
-		let endpos = getpos("']")
+		let endpos = AdaptEndPos(getpos("']"))
 	else
 		" Not implemented yet.
 		return
